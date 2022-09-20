@@ -1,4 +1,4 @@
-# "Social Media und Text Mining", [GESIS Summer School in Survey Methodology]https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2) 2022
+# "Social Media und Text Mining", [GESIS Summer School in Survey Methodology](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2) 2022
 Materials for the 2022 [GESIS Summer School in Survey Methodology](https://www.gesis.org/en/gesis-training/what-we-offer/summer-school-in-survey-methodology) course "Introduction to R for Data Analysis"
 
 
