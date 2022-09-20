@@ -36,7 +36,7 @@ By the end of the course participants should be:
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started with R and RStudio </td>
+   <td style="text-align:left;font-weight: bold;"> Grundlagen der Textanalyse </td>
   </tr>
   <tr>
 
