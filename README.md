@@ -27,7 +27,7 @@ By the end of the course participants should be:
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
-   <th style="text-align:left;"> Day </th>
+
    <th style="text-align:left;"> Time </th>
    <th style="text-align:left;"> Topic </th>
   </tr>
