@@ -9,8 +9,8 @@ Please link to the [workshop GitHub repository](https://github.com/nika-akin/-So
 
 ---
 
-# Course description
-The open source software package `R` is free of charge and offers standard data analysis procedures as well as a comprehensive repertoire of highly specialized processes and procedures, even for complex applications. After providing an introduction to the basic concepts and functionalities of `R`, we will go through a prototypical data analysis workflow in the course: import, wrangling, exploration, (basic) analysis, reporting.
+# Beschreibung
+Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine wichtige Grundlage für die Beschreibung und Erklärung sozialer Phänomene (z.B., Online-Radikalisierung). Bei der Arbeit mit diesem Datentyp bergen Entscheidungen in allen Phasen des Forschungszyklus (von der Datenerhebung über Vorverarbeitungsschritten bis hin zu den analytischen Entscheidungen) allerdings Risiken der Verzerrung für Validitäts- und Reliabilitätsaspekte.
 
 
 # Learning objectives
