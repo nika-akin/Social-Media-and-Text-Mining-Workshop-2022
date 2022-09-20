@@ -24,6 +24,7 @@ By the end of the course participants should be:
 
 # Timetable
 ## 29-09-2022
+
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
