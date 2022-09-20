@@ -34,37 +34,37 @@ By the end of the course participants should be:
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;color: gray !important;"> Monday </td>
+   <
    <td style="text-align:left;color: gray !important;"> 09:30 - 10:30 </td>
    <td style="text-align:left;font-weight: bold;"> Getting Started with R and RStudio </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Monday </td>
+
    <td style="text-align:left;color: gray !important;color: gray !important;"> 10:30 - 10:45 </td>
    <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;"> Monday </td>
+
    <td style="text-align:left;color: gray !important;"> 10:45 - 12:00 </td>
    <td style="text-align:left;font-weight: bold;"> Getting Started with R and RStudio </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Monday </td>
+
    <td style="text-align:left;color: gray !important;color: gray !important;"> 12:00 - 13:00 </td>
    <td style="text-align:left;font-weight: bold;color: gray !important;"> Lunch Break </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;"> Monday </td>
+  
    <td style="text-align:left;color: gray !important;"> 13:00 - 14:00 </td>
    <td style="text-align:left;font-weight: bold;"> Data Import &amp; Export </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Monday </td>
+
    <td style="text-align:left;color: gray !important;color: gray !important;"> 14:00 - 14:15 </td>
    <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
   </tr>
   <tr>
-   <td style="text-align:left;color: gray !important;"> Monday </td>
+
    <td style="text-align:left;color: gray !important;"> 14:15 - 15:30 </td>
    <td style="text-align:left;font-weight: bold;"> Data Import &amp; Export </td>
   </tr>
