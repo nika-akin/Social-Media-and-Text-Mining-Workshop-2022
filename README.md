@@ -5,7 +5,7 @@ Materials for the 2022 Workshop at the Conference [„Forschung zur Digitalisier
 [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org))
 
 [![](https://licensebuttons.net/l/by/3.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/) 
-Please link to the [workshop GitHub repository](https://github.com/StefanJuenger/r-intro-gesis-2022)
+Please link to the [workshop GitHub repository](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022)
 
 ---
 
@@ -23,7 +23,7 @@ By the end of the course participants should be:
 
 
 # Timetable
-## Day 1
+## 29-09-2022
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -71,98 +71,3 @@ By the end of the course participants should be:
 </tbody>
 </table>
 
-## Day 2
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Day </th>
-   <th style="text-align:left;"> Time </th>
-   <th style="text-align:left;"> Topic </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;"> 09:30 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Wrangling - Part 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 10:30 - 10:45 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;"> 10:45 - 12:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Wrangling - Part 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 12:00 - 13:00 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Lunch Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;"> 13:00 - 14:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Wrangling - Part 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 14:00 - 14:15 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Tuesday </td>
-   <td style="text-align:left;color: gray !important;"> 14:15 - 15:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Wrangling - Part 2 </td>
-  </tr>
-</tbody>
-</table>
-
-## Day 3
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Day </th>
-   <th style="text-align:left;"> Time </th>
-   <th style="text-align:left;"> Topic </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;"> 09:30 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Exploratory Data Analysis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 10:30 - 10:45 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;"> 10:45 - 12:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Exploratory Data Analysis </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 12:00 - 13:00 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Lunch Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;"> 13:00 - 14:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Visualization - Part 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;color: gray !important;"> 14:00 - 14:15 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;color: gray !important;"> Wednesday </td>
-   <td style="text-align:left;color: gray !important;"> 14:15 - 15:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Visualization - Part 1 </td>
-  </tr>
-</tbody>
-</table>
