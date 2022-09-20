@@ -1,9 +1,8 @@
-# "Introduction to R for Data Analysis", [GESIS Summer School in Survey Methodology](https://www.gesis.org/en/gesis-training/what-we-offer/summer-school-in-survey-methodology) 2022
+# "Social Media und Text Mining", [GESIS Summer School in Survey Methodology]https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2) 2022
 Materials for the 2022 [GESIS Summer School in Survey Methodology](https://www.gesis.org/en/gesis-training/what-we-offer/summer-school-in-survey-methodology) course "Introduction to R for Data Analysis"
 
-[Stefan Jünger](https://stefanjuenger.github.io/) ([stefan.juenger@gesis.org](mailto:stefan.juenger@gesis.org), [\@StefanJuenger](https://twitter.com/StefanJuenger));
+
 [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org);
-[Johannes Breuer](https://www.johannesbreuer.com/) ([johannes.breuer@gesis.org](mailto:johannes.breuer@gesis.org), [\@MattEagle09](https://twitter.com/MattEagle09))
 
 [![](https://licensebuttons.net/l/by/3.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/) 
 Please link to the [workshop GitHub repository](https://github.com/StefanJuenger/r-intro-gesis-2022)
@@ -13,9 +12,6 @@ Please link to the [workshop GitHub repository](https://github.com/StefanJuenger
 # Course description
 The open source software package `R` is free of charge and offers standard data analysis procedures as well as a comprehensive repertoire of highly specialized processes and procedures, even for complex applications. After providing an introduction to the basic concepts and functionalities of `R`, we will go through a prototypical data analysis workflow in the course: import, wrangling, exploration, (basic) analysis, reporting.
 
-# Prerequisites
-- prior experience with quantitative data analysis, basic statistics, and regression
-- experience with using other statistical packages (e.g., *SPSS* or *Stata*) is helpful, but not a requirement
 
 # Learning objectives
 By the end of the course participants should be:
