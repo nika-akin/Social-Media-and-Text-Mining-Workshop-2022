@@ -1,5 +1,5 @@
-# ["Social Media und Text Mining"-Workshop](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2), 2022
-Materials for the 2022 [GESIS Summer School in Survey Methodology](https://www.gesis.org/en/gesis-training/what-we-offer/summer-school-in-survey-methodology) course "Introduction to R for Data Analysis"
+# ["Social-Media und Text-Mining"-Workshop](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2), 2022
+Materials for the 2022 Workshop [Conference „Forschung zur Digitalisierung in der kulturellen Bildung“ ]([https://www.gesis.org/en/gesis-training/what-we-offer/summer-school-in-survey-methodology](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2)) 
 
 
 [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org);
