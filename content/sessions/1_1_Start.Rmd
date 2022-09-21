@@ -1,0 +1,153 @@
+---
+title: "Social-Media und Text-Mining-Workshop mit R"
+subtitle: "Konzeptionelle Grundlagen & Herausforderungen bei der Analyse von Social-Web-Daten"
+author: "Veronika Batzdorfer"
+date: "2022-09-29"
+presenter: Veronika
+
+---
+layout: true 
+
+```{r child = "./content/config/sessions_setup.Rmd"}
+```
+
+---
+
+## About this course
+
+In this course, we will provide an introduction to the basic concepts and functionalities of `R` and go through a prototypical data analysis workflow: import, wrangling, exploration, (basic) analysis, and reporting. 
+
+By the end of this course you should...
+
+- be comfortable with using `R` and *RStudio*
+- be able to import, wrangle, and explore your data with `R`
+- be able to create/conduct basic visualizations and analyses of your data with `R`
+- be able to generate reproducible research reports using `R Markdown`
+
+--
+
+**Note**: This is not a statistics workshop. Our focus will be on learning how to use `R`.
+
+---
+
+## Working with `R` - Whole game
+
+.center[
+```{r data-science-pic, echo = FALSE, out.width="60%"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png")
+```
+]
+.small[
+Source: [*R for Data Science*](http://r4ds.had.co.nz/)
+]
+
+.small[
+- **Import**: read in data in different formats (e.g., .csv, .xls, .sav, .dta)
+- **Tidy**: clean data (1 row = 1 case, 1 column = 1 variable), rename & recode variables, etc.
+- **Transform**: prepare data for analysis (e.g., by aggregating and/or filtering)
+- **Visualize**: explore/analyze data through informative plots
+- **Model**: analyze the data by creating models (e.g, linear regression model) 
+- **Communicate**: present the results (to others)
+]
+
+---
+
+## Prerequisites for this course
+
+.large[
+- Working versions of `R` (>= version 4.0.0) and *RStudio* on your computer 
+
+- Prior experience with quantitative data analysis, basic statistics, and regression 
+
+- Experience with using other statistical packages (e.g., *SPSS* or *Stata*) is helpful
+]  
+
+---
+## About us: Veronika Batzdorfer
+
+.pull-left[
+```{r veronika-pic, echo = FALSE, out.width = "50%"}
+woRkshoptools::include_picture("./Veronika.png")
+```
+]
+
+.pull-right[
+- Postdoctoral researcher in the team Digital Society Observatory at the GESIS department Computational Social Science (with a secondary affiliation also in the team Survey Data Augmentation in the department Survey Data Curation)
+]
+
+.small[
+- Research interests:
+  - digital trace data
+  - temporal dynamics on social media platforms
+  - causal identification
+
+[veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org) |
+[Personal GESIS website](https://www.gesis.org/en/institute/staff/person/Veronika.Batzdorfer?no_cache=1)
+]
+
+---
+
+## About you
+
+- What's your name?  
+
+- Where do you work/study? What are you working on/studying?
+
+---
+
+## Workshop Structure & Materials
+
+- The workshop consists of a combination of lectures and hands-on exercises
+
+- For the time after the workshop sessions each day, we have also prepared some optional (and hopefully fun) "extracurricular activities"
+
+- Slides and other materials are available at
+
+.center[`https://github.com/StefanJuenger/r-intro-gesis-2022`]
+
+
+---
+
+## A very brief history of `R`
+
+- `R` was created by Ross Ihaka and Robert Gentleman at the Department of Statistics at the University of Auckland (NZ) in 1993
+- The `R` *Core Group* that has been responsible for the development of `R` since then and `CRAN` were founded in 1997
+- version `1.0.0` of `R` was released in 2000
+- *RStudio* was initially released in 2011
+- currently, the most recent version of `R` is `4.2.1` (released 2022-06-23)<sup>1</sup>
+
+If you want to know a bit more about the origins and history of `R` as well as the philosophy behind it, the book [*R Programming for Data Science*](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng provides a [good summary](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html). You can also watch this [*YouTube* video in which David Smith talks about *Twenty Years of R*](https://youtu.be/iq_biXEIx-U).
+
+.small[
+[1] Fun fact: The different versions of `R` also have (nick)names. The current version `4.2.1`, e.g., is called 'Funny-Looking Kid'.
+]
+
+---
+
+
+## The versatility of `R`
+
+Some of the things you can do and create with `R` include...
+
+.small[
+- all sorts or statistical analysis & machine learning (e.g., with [tidymodels](https://www.tidymodels.org/))
+- text mining and natural language processing (e.g., with [quanteda](https://quanteda.io/))
+- collecting data, for example:
+	- surveys (or diary studies) with [formr](https://formr.org/)
+	- web scraping with [rvest](https://rvest.tidyverse.org/)
+- all sorts of visualizations, including:
+	- animated plots with [gganimate](https://gganimate.com/)
+	- interactive visualizations with [plotly](https://plotly.com/r/)
+	- (interactive) maps with [tmap](https://r-tmap.github.io/tmap/)
+- interactive web applications with [Shiny](https://shiny.rstudio.com/)
+- various sorts of publications, such as...
+  - reproducible reports and publications with [R Markdown](https://rmarkdown.rstudio.com/)
+  - websites with [blogdown](https://bookdown.org/yihui/blogdown/)
+  - books with [bookdown](https://bookdown.org/)
+  - presentations with [xaringan](https://github.com/yihui/xaringan)
+- ...
+]
+
+---
+
+
