@@ -32,7 +32,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
+   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen &amp
+    Herausforderungen bei der Analyse von Social-Web-Daten </td>
   </tr>
   <tr>
 
@@ -52,7 +53,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
   
    <td style="text-align:left;color: gray !important;"> 13:30 - 15:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Twitter Demo &amp; Exkurs </td>
+   <td style="text-align:left;font-weight: bold;"> Twitter Demo &amp; Exkurs zu Crawling Social-Web-Data </td>
   </tr>
   <tr>
 
