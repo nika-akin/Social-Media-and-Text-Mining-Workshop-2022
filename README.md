@@ -10,12 +10,12 @@ Workshopmaterial zur Arbeit mit Social-Media-Daten und Text-Mining-Methoden in `
 Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine wichtige Grundlage für die Beschreibung und Erklärung sozialer Phänomene (z.B., Online-Radikalisierung). Bei der Arbeit mit diesem Datentyp bergen Entscheidungen in allen Phasen des Forschungszyklus (von der Datenerhebung über Vorverarbeitungsschritten bis hin zu den analytischen Entscheidungen) allerdings Risiken der Verzerrung für Validitäts- und Reliabilitätsaspekte.
 
 # Ziele
-Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an digitalen Verhaltensspurdaten (vorwiegend Textdaten), die auf Webplattformen verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in  `R` kombiniert.
+Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdaten von Twitter, die frei verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in  `R` kombiniert.
 
-- Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools erheben und verarbeiten 
+- Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und verarbeiten 
 - Grundlagen der natürlichen Sprachverarbeitung (NLP) 
  - Datenbereinigung und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse (einfachen Heuristiken und Wörterbücher) 
- - Ausblick auf Word embeddings oder Topic Modelling
+ - Ausblick auf Word embeddings oder Topic Modelling 
 
 # Timetable
 ## 29-09-2022
@@ -32,7 +32,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an digitale
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Grundlagen der Analyse von Twitterdaten  </td>
+   <td style="text-align:left;font-weight: bold;"> Grundlagen der Analyse von digitalen Spurdaten (Twitterdaten)  </td>
   </tr>
   <tr>
 
