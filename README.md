@@ -24,8 +24,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
  <thead>
   <tr>
 
-   <th style="text-align:left;"> Time </th>
-   <th style="text-align:left;"> Topic </th>
+   <th style="text-align:left;"> Uhrzeit </th>
+   <th style="text-align:left;"> Inhalt </th>
   </tr>
  </thead>
 <tbody>
@@ -37,7 +37,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 10:30 - 11:00 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Kaffeepause </td>
   </tr>
   <tr>
 
@@ -47,7 +47,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 12:30 - 13:30 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Lunch Break </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Mittagspause </td>
   </tr>
   <tr>
   
@@ -57,7 +57,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 15:00 - 15:30 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Break </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Kaffeepause </td>
   </tr>
   <tr>
 
