@@ -4,24 +4,18 @@ Workshopmaterial zur Arbeit mit Social-Media-Daten und Text-Mining-Methoden in `
 
 [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org))
 
-[![](https://licensebuttons.net/l/by/3.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/) 
-Please link to the [workshop GitHub repository](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022)
-
 ---
 
 # Beschreibung
 Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine wichtige Grundlage für die Beschreibung und Erklärung sozialer Phänomene (z.B., Online-Radikalisierung). Bei der Arbeit mit diesem Datentyp bergen Entscheidungen in allen Phasen des Forschungszyklus (von der Datenerhebung über Vorverarbeitungsschritten bis hin zu den analytischen Entscheidungen) allerdings Risiken der Verzerrung für Validitäts- und Reliabilitätsaspekte.
 
+# Ziele
+Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an digitalen Verhaltensspurdaten (vorwiegend Textdaten), die auf Webplattformen verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in R kombiniert.
 
-# Learning objectives
-By the end of the course participants should be:
-
-- Comfortable with using `R` and *RStudio*
-- Able to import, wrangle, and explore their data with `R`
-- Able to conduct basic visualizations and analyses of their data with `R`
-- Able to generate reproducible research reports using `R Markdown`
-
-
+- Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools erheben und verarbeiten 
+- Grundlagen der natürlichen Sprachverarbeitung (NLP) 
+ - Datenbereinigung und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse (einfachen Heuristiken und Wörterbücher) 
+ - Ausblick auf Word embeddings oder Topic Modelling
 # Timetable
 ## 29-09-2022
 
