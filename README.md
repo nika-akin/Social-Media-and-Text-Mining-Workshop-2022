@@ -14,7 +14,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 
 - Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und zu verarbeiten 
 - Potenziale der Verzerrung bei der Arbeit mit Verhaltensspurdaten
-- Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit ´quanteda´ oder ´textclean´) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
+- Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit `quanteda` oder `textclean`) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
  - Ausblick auf Topic Modelling (oder Word Embeddings)
 
 # Timetable
