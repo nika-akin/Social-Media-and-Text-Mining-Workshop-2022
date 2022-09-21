@@ -1,4 +1,4 @@
-# "Social-Media und Text-Mining"-Workshop, 2022
+# "Social-Media und Text-Mining"-Workshop mit `R`
 Workshopmaterial zur Arbeit mit Social-Media-Daten und Text-Mining-Methoden in `R` im Rahmen der Tagung: [„Forschung zur Digitalisierung in der kulturellen Bildung“ ](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2)
 
 
