@@ -13,7 +13,7 @@ Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine 
 Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdaten von Twitter, die frei verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in  `R` kombiniert.
 
 - Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und zu verarbeiten 
-- Potenziale der Verzerrung
+- Potenziale der Verzerrung bei der Arbeit mit Verhaltensspurdaten
 - Grundlagen der natürlichen Sprachverarbeitung (NLP) und Datenbereinigung und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse (einfachen Heuristiken und Wörterbücher) 
  - Ausblick auf Word embeddings oder Topic Modelling 
 
