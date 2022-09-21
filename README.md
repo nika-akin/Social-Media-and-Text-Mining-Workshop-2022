@@ -64,7 +64,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 15:30 - 17:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Tocpic Modelling) &amp; Social-Web-Data-Collection; Bias und Ethik im NLP</td>
+   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Topic Modelling) &amp; Social-Web-Data-Collection; Bias und Ethik im NLP</td>
   </tr>
 </tbody>
 </table>
