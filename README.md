@@ -14,8 +14,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 
 - Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und zu verarbeiten 
 - Potenziale der Verzerrung bei der Arbeit mit Verhaltensspurdaten
-- Grundlagen der natürlichen Sprachverarbeitung (NLP) und Datenbereinigung und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse (einfachen Heuristiken und Wörterbücher) 
- - Ausblick auf Word embeddings oder Topic Modelling 
+- Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit ´quanteda´ oder ´textclean´) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
+ - Ausblick auf Topic Modelling (oder Word Embeddings)
 
 # Timetable
 ## 29-09-2022
@@ -32,7 +32,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Grundlagen der Analyse von digitalen Spurdaten (Twitterdaten)  </td>
+   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen der Analyse von digitalen Spurdaten (Twitterdaten)  </td>
   </tr>
   <tr>
 
@@ -42,7 +42,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started with R and RStudio </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit </td>
   </tr>
   <tr>
 
