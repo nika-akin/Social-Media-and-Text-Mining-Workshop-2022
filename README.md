@@ -44,7 +44,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Sampling, Pre-processing und Grundlagen der Textanalyse (Häufigkeiten, Korrelationen, Netzwerke, Sentiment Analyse)  </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Sampling, Pre-processing &amp Grundlagen der Textanalyse (Häufigkeiten, Korrelationen, Netzwerke, Sentiment Analyse)  </td>
   </tr>
   <tr>
 
