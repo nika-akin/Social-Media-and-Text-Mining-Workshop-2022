@@ -42,7 +42,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Sampling, Pre-processing und Grundlagen der Textanalyse (Häufigkeiten, Korrelationen, Netzwerke)  </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Sampling, Pre-processing und Grundlagen der Textanalyse (Häufigkeiten, Korrelationen, Netzwerke, Sentiment Analyse)  </td>
   </tr>
   <tr>
 
@@ -52,7 +52,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
   
    <td style="text-align:left;color: gray !important;"> 13:30 - 15:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Sentiment Analyse &amp; Exkurs </td>
+   <td style="text-align:left;font-weight: bold;"> Twitter Demo &amp; Exkurs </td>
   </tr>
   <tr>
 
@@ -62,7 +62,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 15:30 - 17:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Tocpic Modelling) &amp; Social Web Data Collection </td>
+   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Tocpic Modelling) &amp; Social-Web-Data-Collection </td>
   </tr>
 </tbody>
 </table>
