@@ -32,7 +32,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen &amp Herausforderung bei der Analyse von digitalen Spurdaten </td>
+   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
   </tr>
   <tr>
 
@@ -42,7 +42,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Datenexploration und Pre-processing</td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Sampling, Pre-processing und Grundlagen der Textanalyse (Häufigkeiten, Korrelationen, Netzwerke)  </td>
   </tr>
   <tr>
 
@@ -52,7 +52,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
   
    <td style="text-align:left;color: gray !important;"> 13:30 - 15:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Import &amp; Export </td>
+   <td style="text-align:left;font-weight: bold;"> Sentiment Analyse &amp; Exkurs </td>
   </tr>
   <tr>
 
