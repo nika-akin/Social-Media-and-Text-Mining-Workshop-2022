@@ -13,7 +13,7 @@ Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine 
 Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdaten von Twitter, die frei verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in  `R` kombiniert.
 
 - Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und zu verarbeiten 
-- Potenziale der Verzerrung bei der Arbeit mit Verhaltensspurdaten
+- Potenziale der Verzerrung im Forschungsdatenzyklus
 - Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit `quanteda` oder `textclean`) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
  - Ausblick auf Topic Modelling (oder Word Embeddings)
 
@@ -32,7 +32,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen der Analyse von digitalen Spurdaten (Twitterdaten)  </td>
+   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen Herausforderung bei der Analyse von digitalen Spurdaten </td>
   </tr>
   <tr>
 
@@ -42,7 +42,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten -- Datenexploration und Pre-processing</td>
   </tr>
   <tr>
 
@@ -62,7 +62,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 15:30 - 17:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Data Import &amp; Export </td>
+   <td style="text-align:left;font-weight: bold;"> Ausblick advanced NLP-Techniken wie Tocpic Modelling &amp; Social Web Data Collection </td>
   </tr>
 </tbody>
 </table>
