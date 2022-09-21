@@ -16,6 +16,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 - Potenziale der Verzerrung im Forschungsdatenzyklus
 - Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit `quanteda` oder `textclean`) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
  - Ausblick auf Topic Modelling (oder Word Embeddings)
+ - Bias und Ethik im NLP
 
 # Timetable
 ## 29-09-2022
@@ -63,7 +64,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 15:30 - 17:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Tocpic Modelling) &amp; Social-Web-Data-Collection </td>
+   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Tocpic Modelling) &amp; Social-Web-Data-Collection 
+ Vorurteile und Ethik im NLP</td>
   </tr>
 </tbody>
 </table>
