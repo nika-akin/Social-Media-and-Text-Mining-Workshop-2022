@@ -33,8 +33,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Konzeptionelle Grundlagen &amp
-    Herausforderungen bei der Analyse von Social-Web-Daten </td>
+   <td style="text-align:left;font-weight: bold;"> Konzepte &amp
+    Herausforderungen bei der Analyse von Social-Web-Daten (insb. Twitter-API) </td>
   </tr>
   <tr>
 
