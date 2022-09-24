@@ -19,6 +19,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
  - Bias und Ethik im NLP
 
 # Vorbereitung
+- Daten von: [Kaggle Data Dump, Ukraine, "en_tweets_sample.pkl"](https://www.kaggle.com/code/josbenard/prepare-datasets/data)
 - Download & Installierung R from: https://cran.r-project.org/
 - Download & Installierung RStudio from: https://www.rstudio.com/
 
