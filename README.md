@@ -22,7 +22,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 - Download & install R from: https://cran.r-project.org/
 - Download & install RStudio from: https://www.rstudio.com/
 
-Install packages with the following R commands:
+- Install packages with the following R commands:
 
 `install.packages(‘tidyverse’)`
 `install.packages(‘quanteda’)`
