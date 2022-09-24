@@ -42,7 +42,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
   <tr>
    <
    <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
-   <td style="text-align:left;font-weight: bold;"> [Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/1_1_analyse_social_web_data.pdf) </td>
+   <td style="text-align:left;font-weight: bold;"> [„Forschung zur Digitalisierung in der kulturellen Bildung“ ](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2)
+[Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/1_1_analyse_social_web_data.pdf) </td>
   </tr>
   <tr>
 
