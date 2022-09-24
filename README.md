@@ -19,16 +19,16 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
  - Bias und Ethik im NLP
 
 # Vorbereitung
-- Download & install R from: https://cran.r-project.org/
-- Download & install RStudio from: https://www.rstudio.com/
+- Download & Installierung R from: https://cran.r-project.org/
+- Download & Installierung RStudio from: https://www.rstudio.com/
 
-- Install packages with the following R commands:
+- Installieren der folgenden Pakete:
 
-`install.packages(‘tidyverse’)`
-`install.packages(‘quanteda’)`
+`install.packages(tidyverse)`
+`install.packages(quanteda)`
+`install.packages(tidytext)`
 
-# Timetable
-## 29-09-2022
+# Schedule -- 29-09-2022
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
