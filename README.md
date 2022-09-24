@@ -28,7 +28,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 `install.packages(quanteda)`
 `install.packages(tidytext)`
 
-# Schedule -- 29-09-2022
+# Inhalte--29-09-2022
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
