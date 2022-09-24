@@ -27,6 +27,8 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 `install.packages(tidyverse)`
 `install.packages(quanteda)`
 `install.packages(tidytext)`
+`install.packages(textclean)`
+`install.packages(academictwitteR)`
 
 # Inhalte--29-09-2022
 
