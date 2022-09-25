@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "Social-Media und Text-Mining-Workshop mit R"
 output: html_notebook
 ---
 #### Generelle Schritte bei der Textanalyse
@@ -320,7 +320,7 @@ term_freq_en <- textstat_frequency(tweets_en_clean)
 head(term_freq_en, n = 10)
 ```
 
-**?** Wenn Sie sich das Ergebnis ansehen, gibt es dann korpusspezifische Begriffe, die ebenfalls als *Stop words* betrachtet werden sollten?
+**?** Wenn Sie sich das Ergebnis ansehen, gibt es dann korpusspezifische Begriffe, die ebenfalls als *Stopwords* betrachtet werden sollten?
 
 **?** Wie hoch ist der Anteil der Begriffe am gesamten Vokabular, die nur einmal im Korpus vorkommen?
 
@@ -329,7 +329,7 @@ head(term_freq_en, n = 10)
 write_csv(tweets, file = "./data/tweets.csv")
 ```
 
-Wenn wir die gesammelten Daten für die weitere Auswertung (und/oder zur Archivierung, s.u.) speichern möchten, ist dies mit R in vielen verschiedenen Formaten möglich. Aufgrund seiner Interoperabilität nutzen wie hier im Beispiel das CSV-Format.
+
 
 
 #### Ausblick und Quellen
