@@ -56,7 +56,7 @@ Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten: (i) Sampling, (ii) Pre-processing &amp (iii) Grundlagen der Textanalyse (Häufigkeiten, Co-Occurences, Netzwerke, Sentiment Analyse)  </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten: (i) Sampling, (ii) Pre-processing &amp (iii) Grundlagen der Textanalyse (Häufigkeiten, Co-Occurences, Netzwerke)  </td>
   </tr>
   <tr>
 
