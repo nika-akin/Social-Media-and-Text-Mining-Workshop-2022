@@ -125,7 +125,9 @@ library(quanteda.textplots)
 #### Sampling
 **Quellen zur Academic Twitter API**:
 - https://developer.twitter.com/en/use-cases/do-research/academic-research/resources
+
 - https://cran.r-project.org/web/packages/academictwitteR/vignettes/academictwitteR-tidy.html
+
 - https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list
 
 **Authentication**
@@ -194,14 +196,27 @@ tweets %>%
   head(10)
 ```
 
-#### Grundlagen Text Mining
+#### Grundlagen Text Mining in a Nutshell
+A.**Document** = Sammlung von Zeichenfolgen und ihre Metadaten
+
+B.**Corpus** = Sammlung von *Documents* 
+
+C.**Tokens** = kleinste Bedeutungseinheit (meist Wörter)
+
+D.**Vocabulary** = Sammlung eindeutiger Wörter eines *Corpus*
+
+E.**D**ocument-**F**eature-**M**atrix oder **D**ocument-**T**erm-**M**atrix = dies ist eine Matrix, in der die Zeilen die Dokumente, die Spalten die Ausdrücke und die Zellen die Häufigkeit der Ausdrücke in den einzelnen Dokumenten angeben, d.h.: Matrix mit *n* = Anzahl der Document-Zeilen und *m* = Größe der Vocabulary Spalten, basiert auf der **bag-of-words**-Annahme, das die Reihenfolge der Wörter und die Syntax ignoriert. 
+
+
+
 ##### Pre-processing
-Zur Text Bereinigung zählt u.a.:
+A. Tokenisation
 
-- Tokenisation
-- Part-of-Speech Tagging
-- Stemming oder Lemmatization
+B. Stopwords entfernen
 
+C. String operations (Interpunktion, URL normalisieren)
+
+Die Reihenfolge der Anwendungsschritte ist entscheidend und sollte durch die Forschungsfrage geleitet sein.
 
 ```{r}
 # Bereinigen von @-Symbol
@@ -236,8 +251,6 @@ Oder Normalisieren von Wortverlängerungen (Elongation, z.B."Whyyyy")
 ```{r}
 tweets$text <- replace_word_elongation(tweets$text)
 ```
-
-
 
 Aus dem data frame kann man ein *Corpus-Objekt* erstellen, d.h. eine Sammlung von *Dokumenten* (Tweets) und deren *Metadaten*.
 
@@ -279,6 +292,18 @@ tweets_en_dfm <- dfm(tweets_en_tokens) %>%
 topfeatures(tweets_en_dfm, 10)
 ```
 
+Absolute Worthäufigkeiten mit `quanteda.textstats`
+
+```{r}
+term_freq_en <- textstat_frequency(tweets_en_dfm)
+head(term_freq_en, n = 10)
+```
+
+**?** Wenn Sie sich das Ergebnis ansehen, gibt es dann korpusspezifische Begriffe, die ebenfalls als *Stopwords* betrachtet werden sollten?
+
+**?** Wie hoch ist der Anteil der Begriffe am gesamten Vokabular, die nur einmal im Korpus vorkommen?
+
+
 Lexikalische Diversität
 
 ```{r}
@@ -313,23 +338,10 @@ textplot_network(fcmat_tweets_select, min_freq = 0.7, vertex_size = size / max(s
 ```
 
 
-Absolute Worthäufigkeiten mit `quanteda.textstats`
-
-```{r}
-term_freq_en <- textstat_frequency(tweets_en_clean)
-head(term_freq_en, n = 10)
-```
-
-**?** Wenn Sie sich das Ergebnis ansehen, gibt es dann korpusspezifische Begriffe, die ebenfalls als *Stopwords* betrachtet werden sollten?
-
-**?** Wie hoch ist der Anteil der Begriffe am gesamten Vokabular, die nur einmal im Korpus vorkommen?
-
 #### Daten speichern
 ```{r}
 write_csv(tweets, file = "./data/tweets.csv")
 ```
-
-
 
 
 #### Ausblick und Quellen
