@@ -30,6 +30,7 @@ Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdate
 `install.packages(tidytext)`
 `install.packages(textclean)`
 `install.packages(academictwitteR)`
+`install.packages(lubridate)`
 
 # Inhalte--29-09-2022
 
