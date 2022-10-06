@@ -104,9 +104,7 @@ Unterscheidung nach Anforderungen:
 **Quellen zur Academic Twitter API**:
 
 - https://developer.twitter.com/en/use-cases/do-research/academic-research/resources
-
 - https://cran.r-project.org/web/packages/academictwitteR/vignettes/academictwitteR-tidy.html
-
 - https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list
 
 #### 4.1. Twitter Modi mit v2 API Endpoints
@@ -151,7 +149,7 @@ n = 100,
 #### `R`-Pakete
 ```{r, eval=FALSE}
 library(academictwitteR)    # Datenerhebung
-library(dplyr)          # Data Wrangling, Aufbearbeitung
+library(dplyr)              # Data Wrangling, Aufbearbeitung
 library(quanteda)           # Text Mining
 library(quanteda.textstats)
 library(quanteda.textplots)
@@ -177,7 +175,7 @@ Sys.setenv(TWITTER_BEARER = unname(oautCred["bearer"]))
 #Tweet Suchabfrage (beinhaltet "#hashtags, ggf. "keywords", Sprache)
 
 get_all_tweets(
-  query = '(#Ukraine) -is:retweet',                   #tweet Suchabfrage
+  query = '(#Ukraine) -is:retweet',                   #Tweet Suchabfrage
                n = Inf,                               #max tweet nr 
                start_tweets = "2022-08-19T00:00:00Z", #Start-Datum
                end_tweets = "2022-08-19T23:59:59Z",   #End-Datum
@@ -191,7 +189,7 @@ get_all_tweets(
 rm(oautCred)
 
 ```
-- **? Welche Implikationen im Forschungszyklus haben Ihre Entscheidungen hier bei der Formulierung der Query?**
+- **? Welche Implikationen im Forschungszyklus haben Entscheidungen bei der Formulierung der Query?**
 
 
 
@@ -206,39 +204,42 @@ glimpse(tweets)
 **Anteil der Sprachen**
 Wie verteilen sich die Sprachen über die Accounts?
 ```{r Sprachverteilung}
-table(tweets$language)
+tweets %>% 
+  group_by(language) %>% 
+  count() %>% 
+  arrange(desc(n))
 ```
-**Verteilung der täglichen Tweets**
-```{r First glimpse Verteilung Tweet Anzahl}
+**Verteilung der Tweets per minute**
+```{r Verteilung Tweet Anzahl}
 ggplot(data = tweets,
       aes(x = tweetcreatedts)) +
       geom_histogram(bins = 57, color = "black", fill = NA)+
       ggtitle(label = "Tägliche Tweetanzahl")
 ```
-**Wrangling der Datums-Zeitvariablen mit [lubridate](https://lubridate.tidyverse.org/)**
+**Parsing der DAte-Time Variables mit [lubridate](https://lubridate.tidyverse.org/)**
 ```{r Wrangling Zeitvariablen}
 tweets <- tweets %>%
-  mutate(hour = floor_date(tweetcreatedts, 
-                           unit= "hour")) #Runden von date-time Objekten (Sekunde, Woche, Monat)
+  mutate(minute = (floor_date(tweetcreatedts, 
+                           unit = "minute"))) #Runden von date-time Objekten (Sekunde, Woche, Monat)
 
 ```
-**Stündliche Tweets und Retweets** 
+*Tweets und Retweets per minute** 
 ```{r}
-hour_summary <- tweets %>%
-  group_by(hour) %>%
+minute_summary <- tweets %>%
+  group_by(minute) %>%
   summarize(tweets = n(),
             avg_retweets = exp(mean(log(retweetcount + 1))) - 1)
 
-hour_summary %>%
-  ggplot(aes(hour, tweets)) +
-  geom_line(color = "lightblue", size = 2) +
+minute_summary %>%
+  ggplot(aes(minute, tweets)) +
+  geom_line(color = "darkblue", size = 0.5) +
   expand_limits(y = 0) +
   labs(x = "Time",
        y = "Number of #Ukraine tweets per hour")
 
-hour_summary %>%
-  ggplot(aes(hour, avg_retweets)) +
-  geom_line(color = "lightblue", size = 2) +
+minute_summary %>%
+  ggplot(aes(minute, avg_retweets)) +
+  geom_line(color = "darkblue", size = 0.5) +
   expand_limits(y = 0) +
   labs(x = "Time",
        y = "Average (geometric mean) retweets each hour")
@@ -265,18 +266,17 @@ tweets %>%
   arrange(desc(tweets)) %>%
   arrange(desc(retweets))
 
-
-#Anteil Favorites und Retweets pro User
+#Anteil Likes und Retweets pro User
 tweets %>%
   select(username, text, retweetcount, favorite_count) %>%
-  mutate(ratio = (favorite_count + 1) / (retweetcount + 1)) %>%
+  mutate(ratio = (favorite_count + 1) / (retweetcount + 1)) %>% # to avoid zero
   arrange(desc(ratio)) %>% 
-  view()
+  view(n=10)
 
 ```
 
 #### 8. Grundlagen Text Mining in a Nutshell
-A.**Document** = Sammlung von Zeichenfolgen und ihre Metadaten
+A.**Document** = Sammlung von Zeichenfolgen und ihrer Metadaten
 
 B.**Corpus** = Sammlung von *Documents* 
 
@@ -344,8 +344,6 @@ tweets_en_corpus <- corpus(tweets_en,
 
 summary(tweets_en_corpus)
 ```
-
-
 In `quanteda` kann man Text in die kleinsten Bedeutungssegmente (**tokens**) aufteilen durch das Entfernen von Trennzeichen (vgl. dazu in `tidytext` `unnest_tokens(word, text)`. Zudem entfernen wir bestimmte Zeichentypen sowie sogenannte **Stopwords** (d.h., grammatikalische Wörter, die je nach Anwendung wenig semantische Bedeutung tragen). Vgl. (`stopwords()`)
 
 ```{r Tokenisation, results=FALSE}
@@ -436,7 +434,6 @@ tweet_words <- tweets %>%
          stringr::str_detect(word, "[a-z]"))
 
 
-
 tweet_words %>%
   count(word, sort = TRUE) %>%
   head(16) %>%
@@ -487,7 +484,6 @@ tf_idf %>%
   ggplot2::ggplot(aes(tf_idf, forcats::fct_reorder(word, tf_idf), fill = hour)) +
   geom_col(show.legend = FALSE)
 ```
-
 
 ```{r hashtags, warning=FALSE}
 #Hashtag Exploration
