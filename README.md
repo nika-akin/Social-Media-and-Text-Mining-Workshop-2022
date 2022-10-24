@@ -1,6 +1,6 @@
 # Social-Media und Text-Mining-Workshop mit `R`
 Workshopmaterial zur Arbeit mit Social-Media-Daten und Text-Mining-Methoden in `R` im Rahmen der Tagung: [„Forschung zur Digitalisierung in der kulturellen Bildung“ ](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2)
-Made with ['woRkshoptools'](https://github.com/StefanJuenger/woRkshoptools)
+(Made with [`woRkshoptools`](https://github.com/StefanJuenger/woRkshoptools))
 
 Kontakt: [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org))
 
