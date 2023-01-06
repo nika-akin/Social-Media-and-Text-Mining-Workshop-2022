@@ -90,4 +90,5 @@ Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
 
 [Session4](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/4_1_Ausblick.pdf)
 
-Fill in the fields to see the markdown badge snippet.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/HEAD)
