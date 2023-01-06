@@ -92,3 +92,6 @@ Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
 
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/HEAD)
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/HEAD
+
