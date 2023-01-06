@@ -89,3 +89,5 @@ Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
 [Session3](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/3_1_analyse_social_web_data.pdf)
 
 [Session4](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/4_1_Ausblick.pdf)
+
+Fill in the fields to see the markdown badge snippet.
