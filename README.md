@@ -1,94 +1,104 @@
-# Social-Media und Text-Mining-Workshop mit `R`
-Workshopmaterial zur Arbeit mit Social-Media-Daten und Text-Mining-Methoden in `R` im Rahmen der Tagung: [„Forschung zur Digitalisierung in der kulturellen Bildung“ ](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2)
-(Made with [`woRkshoptools`](https://github.com/StefanJuenger/woRkshoptools))
+# Social-Media and Text-Mining-Workshop with `R`
+Workshop material on working with social media data and text mining methods in `R` 
 
-Kontakt: [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org))
+Made with [`woRkshoptools`](https://github.com/StefanJuenger/woRkshoptools)
+
+Part of the conference: [„Forschung zur Digitalisierung in der kulturellen Bildung“ ](https://www.dikubi-meta.fau.de/veranstaltungen/digitalisierung-in-der-kulturellen-bildung-whats-next/#sprungmarke2) (29-09-2022)
+
+Contact: [Veronika Batzdorfer](https://www.gesis.org/institut/mitarbeiterverzeichnis/person/Veronika.Batzdorfer?no_cache=1) ([veronika.batzdorfer@gesis.org](mailto:veronika.batzdorfer@gesis.org))
 
 ---
 
-# Beschreibung
-Social-Media sind zentrale Orte der kollektiven Meinungsbildung und bilden eine wichtige Grundlage für die Beschreibung und Erklärung sozialer Phänomene (z.B., Online-Radikalisierung). Bei der Arbeit mit diesem Datentyp bergen Entscheidungen in allen Phasen des Forschungszyklus (von der Datenerhebung über Vorverarbeitungsschritten bis hin zu den analytischen Entscheidungen) allerdings Risiken der Verzerrung für Validitäts- und Reliabilitätsaspekte.
+# Background
+Social media are central sites of collective opinion formation and form an important basis for describing and explaining social phenomena (e.g., online radicalisation). However, when working with this type of data, decisions in all phases of the research cycle (from data collection to pre-processing steps to analytical decisions) carry risks of bias for validity and reliability aspects.
 
-# Ziele
-Dieser Workshop umfasst eine Einführung dazu, wie man große Mengen an Textdaten von Twitter, die frei verfügbar sind, erschließen und für Forschungszwecke nutzbar machen kann. Dabei werden konzeptionelle Überlegungen und praktischen Anwendungen in  `R` kombiniert.
+# About
+This workshop will include an introduction to how large amounts of text data from Twitter, which are openly available, can be made accessible and usable for research purposes. It will combine conceptual considerations and practical applications in `R`.
 
-- Strategien textuelle Daten mit Application Programming Interfaces (APIs) mittels gängiger `R`-Tools zu erheben und zu verarbeiten 
-- Potenziale der Verzerrung im Forschungsdatenzyklus
-- Grundlagen der natürlichen Sprachverarbeitung (NLP), Datenbereinigung (z.B. mit `quanteda` oder `textclean`) und Anwendung gängiger NLP-Tools zur automatisierten Textanalyse
- - Ausblick auf Topic Modelling (oder Word Embeddings)
- - Bias und Ethik im NLP
+- Strategies to collect and process textual data with application programming interfaces (APIs) using common `R` tools. 
+- Potentials of bias in the research data cycle
+- Basics of natural language processing (NLP), data cleaning (e.g. with 'quanteda' or 'textclean') and application of common NLP tools for automated text analysis
+ - Outlook on topic modelling (or word embeddings)
+ - Bias and ethics in NLP
 
-# Vorbereitung
-- Twitterdaten von: [Kaggle Data Dump, Ukraine, "0729_UkraineCombinedTweetsDeduped.csv.gzip"](https://www.kaggle.com/code/josbenard/prepare-datasets/data?select=0729_UkraineCombinedTweetsDeduped.csv.gzip)
-- Download & Installierung R from: https://cran.r-project.org/
-- Download & Installierung RStudio from: https://www.rstudio.com/
+# Requirements
+- Twitter data: [Kaggle Data Dump, Ukraine, "0729_UkraineCombinedTweetsDeduped.csv.gzip"](https://www.kaggle.com/code/josbenard/prepare-datasets/data?select=0729_UkraineCombinedTweetsDeduped.csv.gzip)
+- Download & Installing `R` from: https://cran.r-project.org/
+- Download & Installing `RStudio` from: https://www.rstudio.com/
 
-- Installieren der folgenden Pakete:
+- Dependencies
+``` r
+pkgs <- c("here", "lubridate", "quanteda", "quanteda.textstats", "tidyverse", 
+"academictwitteR", "tibble", "kableExtra", "tidytext", 
+"textclean", "academictwitteR")
 
-`install.packages(tidyverse)`
-`install.packages(quanteda)`
-`install.packages(tidytext)`
-`install.packages(textclean)`
-`install.packages(academictwitteR)`
-`install.packages(lubridate)`
+install.packages(pkgs)
+```
 
-# Inhalte--29-09-2022
+
+# Contents
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
 
-   <th style="text-align:left;"> Uhrzeit </th>
-   <th style="text-align:left;"> Inhalt </th>
+   <th style="text-align:left;"> Time </th>
+   <th style="text-align:left;"> Content </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <
-   <td style="text-align:left;color: gray !important;"> 09:00 - 10:30 </td>
+   
+   <td style="text-align:left;color: gray !important;"> 09:00 - 10:30</td>
    <td style="text-align:left;font-weight: bold;"> 
-Konzepte &amp Herausforderungen bei der Analyse von Social-Web-Daten </td>
+Concepts &amp challenges when analysing social web data
+    
+ https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/1_1_analyse_social_web_data.pdf</td>
   </tr>
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 10:30 - 11:00 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Kaffeepause </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Coffee break </td>
   </tr>
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 11:30 - 12:30 </td>
-   <td style="text-align:left;font-weight: bold;"> Getting Started mit Twitterdaten: (i) Sampling, (ii) Pre-processing &amp (iii) Grundlagen der Textanalyse (Häufigkeiten, Co-Occurences, Netzwerke)  </td>
+   <td style="text-align:left;font-weight: bold;"> Getting Started with Twitter data: (i) Sampling, (ii) Pre-processing/ data wrangling &amp (iii) Basics of textual analyses (frequencies/ co-occurences/ networks) 
+    
+  https://htmlpreview.github.io/?https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/2_1.nb.html </td>
   </tr>
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 12:30 - 13:30 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Mittagspause </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Lunch </td>
   </tr>
   <tr>
   
    <td style="text-align:left;color: gray !important;"> 13:30 - 15:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Twitter Demo &amp; Exkurs Crawling Social-Web-Data </td>
+   <td style="text-align:left;font-weight: bold;"> Twitter Demo &amp; Crawling Social web data 
+    
+   https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/3_1_analyse_social_web_data.pdf
+   </td>
   </tr>
   <tr>
 
    <td style="text-align:left;color: gray !important;color: gray !important;"> 15:00 - 15:30 </td>
-   <td style="text-align:left;font-weight: bold;color: gray !important;"> Kaffeepause </td>
+   <td style="text-align:left;font-weight: bold;color: gray !important;"> Coffee break </td>
   </tr>
   <tr>
 
    <td style="text-align:left;color: gray !important;"> 15:30 - 17:00 </td>
-   <td style="text-align:left;font-weight: bold;"> Ausblick: Fortgeschrittene NLP-Techniken (z.B. Topic Modelling) &amp; Social-Web-Data-Collection; Bias und Ethik im NLP</td>
+   <td style="text-align:left;font-weight: bold;"> Outlook Advanced NLP techniques (e.g., Topic Modeling) &amp; Social web data collection; Bias and Ethics with NLP
+    
+   https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/4_1_Ausblick.pdf
+   </td>
   </tr>
 </tbody>
 </table>
 
-[Session1](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/1_1_analyse_social_web_data.pdf)
 
-[Session2](https://htmlpreview.github.io/?https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/2_1.nb.html)
 
-[Session3](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/3_1_analyse_social_web_data.pdf)
 
-[Session4](https://github.com/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/blob/main/content/sessions/4_1_Ausblick.pdf)
 
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/HEAD)
