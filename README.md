@@ -1,4 +1,4 @@
-# Social-Media and Text-Mining-Workshop with `R`
+# Social Media and Text Mining Workshop with `R`
 Workshop material on working with social media data and text mining methods in `R` 
 
 Made with [`woRkshoptools`](https://github.com/StefanJuenger/woRkshoptools)
