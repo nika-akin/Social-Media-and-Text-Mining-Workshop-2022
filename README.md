@@ -101,6 +101,4 @@ Concepts &amp challenges when analysing social web data
 
 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nika-akin/-Social-Media-and-Text-Mining-Workshop-2022/HEAD)
-
 
