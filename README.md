@@ -22,7 +22,7 @@ This workshop will include an introduction to how large amounts of text data fro
  - Bias and ethics in NLP
 
 # Requirements
-- Twitter data: [Kaggle Data Dump, Ukraine, "0729_UkraineCombinedTweetsDeduped.csv.gzip"](https://www.kaggle.com/code/josbenard/prepare-datasets/data?select=0729_UkraineCombinedTweetsDeduped.csv.gzip)
+- Twitter data: [Kaggle Data Dump, Depression Tweets](https://www.kaggle.com/datasets/infamouscoder/mental-health-social-media?select=Mental-Health-Twitter.csv)
 - Download & Installing `R` from: https://cran.r-project.org/
 - Download & Installing `RStudio` from: https://www.rstudio.com/
 
