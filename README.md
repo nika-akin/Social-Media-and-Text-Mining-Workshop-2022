@@ -96,6 +96,21 @@ Concepts &amp challenges when analysing social web data
 </tbody>
 </table>
 
+## Data
+## Twitter Features
+
+| Feature ID      | Type | Description |
+| --------------- | ---- | ----------- |
+| post_id      | Numeric | identifier of tweet
+| followers   | Numeric | number of followers in profile
+| friends     | Numeric | number of friends in profile
+| post_created   | character| date of posting tweet
+| post_text | character | text of original tweet 
+| user_id    | Numeric | identifier of user 
+| label    | Numeric | depression categorization: 1 = depression tweet, 2 = non-depression
+| favourites    | Numeric |number of external favorites of the tweet
+| user_id    | Numeric | identifier of user d
+
 
 
 
