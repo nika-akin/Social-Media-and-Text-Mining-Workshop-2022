@@ -38,6 +38,8 @@ install.packages(pkgs)
 
 # Contents
 
+[Slides](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nika-akin/Social-Media-and-Text-Mining-Workshop-2022/main/_book/intro.html)
+
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
