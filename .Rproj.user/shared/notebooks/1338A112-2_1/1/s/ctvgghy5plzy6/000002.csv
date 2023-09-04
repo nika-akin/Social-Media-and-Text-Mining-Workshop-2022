@@ -1,0 +1,5 @@
+"0","```r
+tweets_en_corpus <- corpus(tweets_en,
+                           docid_field = \"tweetid\",
+                           text_field = \"text\")
+```"

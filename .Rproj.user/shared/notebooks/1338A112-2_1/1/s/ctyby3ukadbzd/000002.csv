@@ -1,0 +1,6 @@
+"0","```r
+ggplot(data = tweets,
+      aes(x = tweetcreatedts)) +
+      geom_histogram(bins = 57, color = \"black\", fill = NA)+
+      ggtitle(label = \"TÃ¤gliche Tweetanzahl\")
+```"

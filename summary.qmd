@@ -1,0 +1,642 @@
+# Use case Twitter text mining
+
+### Required `R`packages {.unnumbered}
+
+```{r, message = FALSE, warning = FALSE, results = 'hide'}
+pkgs <- c("kaggler", "tidyverse", "httr", "readr", "here") 
+
+lapply(pkgs, require, character.only = TRUE)
+#else install kaggler:
+#install.packages(c("devtools"))
+#devtools::install_github("ldurazo/kaggler")
+
+filter <- dplyr::filter # to resolve namespace conflicts between tidyverse and dplyr
+
+library(academictwitteR)    # collecting Twitter data
+library(dplyr)              # Data Wrangling, pre-processing
+library(quanteda)           # text-based descriptive
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(tidytext)           # Text Mining 'tidy format'
+library(textclean)          # Pre-Processing + harmonizing
+library(lubridate)          # Wrangling with time series data
+library(ggplot2)
+library(anytime)            # parsing dates
+library(scales)
+library(caret)
+
+theme_set(theme_light())
+```
+
+#### Descriptive Overview
+
+For demonstration purposes we retrieve an archived Twitter (sub-)sample, containing English **depression** specific tweets. (The sample contains *N* = 20,000 tweets.) We retrieve a sub-sample from the platform *Kaggle*.
+
+**a.)** This can be directly downloaded: [**Kaggle Data Dump, Depression"**](https://www.kaggle.com/datasets/infamouscoder/mental-health-social-media?select=Mental-Health-Twitter.csv)
+
+**b.)** Or by issuing a `GET` request via its `API` (see below).
+
+For obtaining the data via the `Kaggle API` we *install* and *load* all dependencies to use `kaggler`.
+
+*Note*. For both (a & b authentication is required)
+
+A `kaggle.json` file needs to be made for **authentication** on Kaggle. The `kaggle.json` file should be positioned within the working directory. The json contains: *username* and the `API token`.
+
+To create your `API token` go to your Kaggle Profil: (Your profile \> Account \> Settings \> API \> Create new token)
+
+```{r demonstration, eval=FALSE, error=FALSE}
+setwd("C:/Users/batzdova/Desktop")
+library(here)
+here::i_am("kaggle.json")
+kgl_auth(creds_file = 'kaggle.json')
+```
+
+```{r eval=FALSE}
+response <- kgl_datasets_download_all(owner_dataset = "infamouscoder/mental-health-social-media?select=Mental-Health-Twitter")
+```
+
+```{r eval=FALSE}
+library(httr)
+dataset <- httr::GET("https://www.kaggle.com/datasets/infamouscoder/mental-health-social-media?select=Mental-Health-Twitter.csv")
+
+temp <- tempfile()
+download.file(dataset$url,temp)
+data <- read.csv(unz(temp, "Mental-Health-Twitter.csv"))
+unlink(temp)
+```
+
+```{r eval=FALSE}
+mental <- data
+```
+
+Or alternatively, read in csv-data which have been downloaded.
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+#|warning=FALSE
+#|echo=FALSE
+setwd("C:/Users/batzdova/Desktop")
+here::i_am("Mental-Health-Twitter.csv")
+mental <- read_csv("Mental-Health-Twitter.csv")
+```
+
+### Overview of observations
+
+Our data set comprises $20,000$ observations with $10,000$ depression labeled tweets. Yet, only $19,881$ are unique tweets (i.e. `post_id`)
+
+Each observed person `user_id` ($N=72$ ) can be characterized by a set of variables (i.e., *features*) such as date of post creating `post_created` or count of `followers`.
+
+```{r}
+glimpse(mental)
+
+mental %>% 
+  filter(label ==1) %>% 
+  count()
+
+n_distinct(mental$post_id) # count of unique tweets
+n_distinct(mental$user_id) # count of unique users
+```
+
+
+```{r}
+mental %>%
+  mutate(no_mentions = str_remove_all(string = post_text, pattern = "[@][\\w_-]+")) %>% 
+  dplyr::select(post_text, no_mentions) %>% 
+  View()
+```
+
+
+
+**Parse Date Variable** `post_created`
+
+```{r}
+# Remove the timezone offset from the date string
+mental$date <- gsub(" \\+\\d{4}", "", mental$post_created)
+```
+
+```{r}
+# Convert the date string to a date variable
+mental$date_any <- anytime(mental$date)
+
+# Format the date variable as "YYYY-MM-DD H:M"
+#mental$formatted_date <- format(mental$date_any , "%Y-%m-%d %H:%M")
+mental$formatted_date <- format(mental$date_any , "%Y-%m-%d")
+mental$day_hour <- format(mental$date_any, "%Y-%m-%d %H")
+```
+
+`Formatted_date` is a `character` class. When we would use `as.Date()` we would lose the `timestamp` information. When we have a character with both date and time we have to use `POSIXct` class (as seen with the `date_any` variable).
+
+```{r}
+mental$date <- as.Date(mental$formatted_date)
+mental$date_hour <- as.POSIXlt(mental$day_hour)
+#mental$formatted_date_time <- as.POSIXlt(mental$formatted_date)
+
+
+mental %>%
+
+# calculate how many tweets posted on each date
+  count(date) %>%
+
+# plot the result
+  ggplot(aes(x = date, y = n)) +
+  geom_line() +
+  theme_bw() +
+  scale_x_date(date_breaks = "7 day", date_labels = "%b %d") +
+  ylab("Number of Tweets\n") + xlab("\nDate")
+
+```
+
+**Distribution Friends**
+
+```{r }
+mental$logfriends <-log(mental$friends+1)
+
+hist(mental$logfriends,  breaks = 50, prob= TRUE)
+lines(density(mental$logfriends), col = "red")  
+```
+
+**Distribution Followers**
+
+```{r Log transformed followers}
+mental$logfollow=log(mental$followers+1)
+hist(mental$logfollow, breaks = 50, prob = TRUE)
+lines(density(mental$logfollow), col = "red")   
+```
+
+```{r}
+ggplot(mental, aes(x = logfriends, y = logfollow)) + 
+  geom_point(alpha=.5)
+```
+
+**Tweets und Retweets per day**
+
+```{r message=FALSE, warning=FALSE}
+twt_retwt_summary <- mental %>%
+  group_by(user_id, date, label) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1)
+
+startTime <- as.Date("2014-01-01")
+endTime <- as.Date("2017-10-31")
+
+# create a start and end time R object
+start.end <- c(startTime,endTime)
+start.end
+
+pl1 <- twt_retwt_summary %>%
+  ggplot(aes(date, tweets, group = user_id, fill= user_id)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+
+twt_retwt_summary %>%
+  ggplot(aes(date, tweets, group = user_id, fill= label, col= label)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+twt_retwt_summary %>%
+  ggplot(aes(date, avg_retweets, group = user_id, fill= label, col= label)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+pl2 <-twt_retwt_summary %>%
+  ggplot(aes(date, avg_retweets, group=user_id)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Average (geometric mean) retweets each day")+
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+gridExtra::grid.arrange(pl1,pl2, ncol=2)
+```
+
+```{r warning=FALSE, message=FALSE}
+ts.plot(twt_retwt_summary$tweets)
+ts.plot(twt_retwt_summary$avg_retweets)
+```
+
+**User Activity**
+
+```{r warning=FALSE, message=FALSE}
+mental %>%
+  count(user_id, sort = TRUE) %>%
+  head(12) %>%
+  mutate(username = reorder(user_id, n)) %>%
+  ggplot(aes(username, n)) +
+  geom_col() +
+  coord_flip()
+
+#Retweet activity per user
+mental %>%
+  arrange(desc(retweets)) %>%
+  select(user_id, post_text, retweets)
+#Tweets und Retweets per User
+mental %>%
+  group_by(user_id) %>%
+  summarize(tweets = n(),
+            retweetnr = sum(retweets)) %>%
+  arrange(desc(tweets)) %>%
+  arrange(desc(retweetnr))
+
+#Proportion Likes and Retweets per User
+mental %>%
+  select(user_id, post_text, retweets, favourites) %>%
+  mutate(ratio = (favourites + 1) / (retweets + 1)) %>% # to avoid zero
+  arrange(desc(ratio))
+
+```
+
+#### 8. Basics Text Mining in a Nutshell
+
+A.**Document** = collection of strings and their metadata
+
+B.**Corpus** = collection of \*documents\*\*.
+
+C.**Tokens** = smallest unit of meaning (mostly words)
+
+D.**Vocabulary** = collection of unique words of a *Corpus*.
+
+E.**D**ocument-**F**eature-**M**atrix or **D**ocument-**T**erm-**M**atrix =
+
+this is a matrix where the rows indicate the documents, the columns indicate the expressions and the cells indicate the frequency of the expressions in each document, i.e.: Matrix with *n* = number of Document rows and *m* = size of Vocabulary columns, based on **bag-of-words** assumption, which ignores word order and syntax.
+
+##### 8.1. Pre-processing
+
+A. **Tokenisation**
+
+B. **Remove** Stopwords
+
+C. **String** operations (punctuation, normalise URL).
+
+The order of the application steps is crucial and should be guided by the research question.
+
+```{r Pre-processing Punctuation}
+# Clean @-Symbol
+mental$post_text<- gsub("@\\w+", "", mental$post_text)
+
+# Clean Interpunction
+mental$post_text<- gsub("[[:punct:]]", "", mental$post_text)
+
+# Clean Numbers
+mental$post_text <- gsub("[[:digit:]]", "", mental$post_text)
+
+# Clean pictures
+mental$post_text<- gsub("pictwitter\\w+ *", "", mental$post_text)
+```
+
+```{r Pre-processing html}
+#Clean HTML-Notation
+remove_html <- "&amp;|&lt;|&gt;" #&lt und &gt stehen für < und > und &amp für &
+
+mental_en <- mental %>% 
+  select(post_id, post_text, user_id) %>% 
+  mutate(text = stringr::str_remove_all(post_text, remove_html))
+```
+
+With [`textclean`](https://github.com/trinker/textclean) further harmonisation can be done, e.g. replacing emojis with word equivalents.
+
+```{r, warning=FALSE}
+mental_en$text <- replace_emoji(mental_en$text)
+```
+
+Or normalizing colloquial expressions such as word elongations (e.g., "Whyyyy")
+
+```{r, warning=FALSE}
+mental_en$text <- replace_word_elongation(mental_en$text)
+```
+
+From the data frame, you can create a *Corpus* object, i.e. a collection of *documents* (tweets) and their *metadata*.
+
+```{r}
+#select unique tweet_ids
+unique <- mental_en %>% group_by(post_id) %>% unique()
+```
+
+```{r Corpus Objekt, results='hide'}
+tweets_en_corpus <- corpus(unique,
+                           docid_field = "post_id",
+                           text_field = "post_text")
+
+```
+
+In `quanteda` the smallest meaningful unit are **tokens** which can be generated by segmenting into words (see `tidytext` `unnest_tokens(word, text)`. Further, we can remove **stopwords** (hedges, grammatical signifiers which bear little semantic meaning). See (`stopwords()`)
+
+```{r Tokenisation, results=FALSE}
+tweets_en_tokens <- tokens(tweets_en_corpus,
+                           remove_punct = TRUE,
+                           remove_numbers = TRUE,
+                           remove_symbols = TRUE,
+                           remove_url = TRUE) %>% 
+  tokens_tolower() %>% 
+  tokens_remove(stopwords("english"))
+```
+
+```{r KWIC, results='hide'}
+
+kw_depression <- kwic(tweets_en_tokens, pattern =  "depress*", window = 3)
+head(kw_depression)
+```
+
+#### 8.2. Tidy Workflow--Exploration Tweets, Retweets and Hashtags
+
+```{r Tokenisation und Pre-processing}
+#Tokenising Tweets (1-gram) and Pre-processing with tidytext
+
+tweet_words <- mental %>%
+  select(user_id, 
+         post_text, 
+         retweets, 
+         favourites,
+         formatted_date, 
+         post_id) %>%
+  unnest_tokens(word, post_text) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!word %in% c("amp", "de", "twitter", "youre", "en", "die", "rt", "im", "dont", "ive", "yong"),
+         stringr::str_detect(word, "[a-z]"))
+
+tweet_words %>%
+  count(word, sort = TRUE) %>%
+  head(16) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot2::ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Most common words in Tweets on Depression",
+       y = "Frequency of words")
+
+```
+
+```{r Favorites und Retweets, warning=FALSE, message=FALSE}
+#Distribution of Favorites
+mental %>%
+  ggplot2::ggplot(aes(favourites + 1)) +
+  geom_histogram() +
+  scale_x_log10()
+
+#Mean Retweets and Mean Favorites
+word_summary <- tweet_words  %>%
+  group_by(word) %>%
+  summarize(n = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1,
+            avg_favorites = exp(mean(log(favourites + 1))) - 1) %>%
+  filter(n >= 30) %>%
+  arrange(desc(avg_retweets))
+
+```
+
+```{r tf-idf}
+#Tf-idf: signals importance of a word in a corpus selection
+
+top_word <- tweet_words %>%
+  count(word, formatted_date) %>%
+  bind_tf_idf(word, formatted_date, n) %>%
+  arrange(desc(tf_idf)) %>%
+  distinct(formatted_date, .keep_all = TRUE) %>%
+  arrange(formatted_date)
+
+tf_idf <- word_summary %>%
+  inner_join(top_word, by = c("word")) %>%
+  arrange(desc(avg_retweets)) 
+
+#Tf-idf of words per hour
+tf_idf %>% 
+  ggplot2::ggplot(aes(tf_idf, forcats::fct_reorder(word, tf_idf), fill = word)) +
+  geom_col(show.legend = FALSE)
+```
+
+```{r hashtags, warning=FALSE}
+#Hashtag exploration
+tweet_words <- mental %>%
+  mutate(hashtags = stringr::str_count(post_text, "#[a-zA-Z]"), sort = TRUE) %>%
+  select(user_id, post_text, retweets, favourites, formatted_date , post_id,
+        hashtags) %>%
+  unnest_tokens(word, post_text) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!word %in% c("de", "|"),
+         stringr::str_detect(word, "[a-z]"))
+
+
+mental %>%
+  mutate(hashtags = stringr::str_count(post_text, "#[a-zA-Z]"), sort = TRUE) %>%
+  filter(hashtags < 6) %>%
+  group_by(user_id) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1) %>%
+  filter(tweets >= 30) %>%
+  arrange(desc(avg_retweets))
+
+
+tweet_word_summary <- tweet_words %>%
+  filter(hashtags < 6) %>%
+  group_by(word) %>%
+  summarize(n = n(),
+            avg_retweets = exp(mean(log(retweets+ 1))) - 1,
+            avg_favorites = exp(mean(log(favourites + 1))) - 1)
+
+
+
+tweet_word_summary <-tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+   filter(!word %in% c("amp", "de", "twitter", "youre", "en", "die", "rt", "im", "dont", "ive", "yong"),
+         stringr::str_detect(word, "[a-z]")) %>% 
+  arrange(desc(avg_retweets)) %>% 
+  head()
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+  ggplot2::ggplot(aes(n, avg_retweets)) +
+  geom_point() +
+  geom_text(aes(label = word), check_overlap = TRUE) +
+  scale_x_log10() +
+  scale_y_log10()
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+  arrange(desc(avg_retweets)) %>%
+  head(20) %>%
+  mutate(word = reorder(word, avg_retweets)) %>%
+  ggplot2::ggplot(aes(word, avg_retweets)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Which words get the most retweets in depression?",
+       subtitle = "Only words appearing in at least 100 tweets",
+       y = "Geometric mean of the Number of retweets")
+```
+
+
+
+# Predicting depression tweets based on followers and friends
+```{r warning=FALSE, message=FALSE}
+
+# Data preprocessing
+# Check for missing values
+missing_values <- sum(is.na(mental))
+if (missing_values > 0) {
+  data <- na.omit(mental)  # Remove rows with missing values
+}
+
+# Convert label variable to factor
+#mental$label <- as.factor(mental$label)
+
+# Standardize the followers and friends variables
+mental$followers_standardized <- as.numeric(scale(mental$followers))
+mental$friends_standardized <- as.numeric(scale(mental$friends))
+
+# Check the standardized variables
+head(mental[, c("followers", "followers_standardized", "friends", "friends_standardized")])
+
+
+# Select variables for analysis
+selected_vars <- c("label", "followers_standardized", "friends_standardized")
+mental_selected <- mental[selected_vars]
+
+
+# Split the dataset into training and testing sets
+set.seed(123)  # Set a seed for reproducibility
+train_indices <- createDataPartition(mental_selected$label, p = 0.8, list = FALSE)
+train_data <- mental_selected[train_indices, ]
+test_data <- mental_selected[-train_indices, ]
+
+
+train_data$label <- as.numeric(train_data$label)
+test_data$label <- as.numeric(test_data$label)
+
+# Linear Regression model
+model <- lm(label ~ followers_standardized + friends_standardized, data = train_data)
+
+# Model evaluation
+predictions <- predict(model, newdata = test_data)
+evaluation <- data.frame(actual = test_data$label, predicted = predictions)
+
+# Calculate evaluation metrics
+rmse <- mean((evaluation$actual - evaluation$predicted)^2)
+rmse <- sqrt(rmse)
+r_squared <- cor(evaluation$actual, evaluation$predicted)^2
+
+# Print evaluation metrics
+cat("Mean Squared Error (MSE):", rmse, "\n")
+cat("Root Mean Squared Error (RMSE):", rmse, "\n")
+cat("R-squared value:", r_squared, "\n")
+
+# Regression coefficients and p-values
+summary(model)
+
+library(dotwhisker)
+dwplot(model)+  
+   xlab("Coefficient Estimate") + ylab("") +
+    geom_vline(xintercept = 0,
+               colour = "grey60",
+               linetype = 2) +
+  ggtitle("Predicting Depression Tweets") 
+
+```
+
+The followers_standardized coefficient (-0.286159) indicates that, on average, a one-standard-deviation increase in the standardized followers variable is associated with a decrease of 0.286159 units in the predicted depression label.
+The friends_standardized coefficient (0.314163) indicates that, on average, a one-standard-deviation increase in the standardized friends variable is associated with an increase of 0.314163 units in the predicted depression label. All t-values are large (absolute values > 2), indicating that the coefficients are significantly different from zero.
+
+
+Overall, the regression analysis suggests that both the standardized followers and standardized friends variables have a statistically significant association with the predicted depression label. An increase in the standardized followers is associated with a decrease in the predicted depression label, while an increase in the standardized friends is associated with an increase in the predicted depression label.
+
+
+```{r}
+# Fit a non-linear regression model
+model_nonlinear <- nls(label ~ a * exp(b * followers_standardized) + c * friends_standardized,
+                       data = train_data,
+                       start = list(a = 1, b = 1, c = 1))
+
+# Print the model summary
+summary(model_nonlinear)
+
+# Predict the label using the non-linear regression model
+test_data$predicted_nonlinear <- predict(model_nonlinear, newdata = test_data)
+
+# Evaluate the non-linear regression model
+mse_nonlinear <- mean((test_data$label - test_data$predicted_nonlinear)^2)
+rmse_nonlinear <- sqrt(mse_nonlinear)
+r_squared_nonlinear <- 1 - sum((test_data$label - test_data$predicted_nonlinear)^2) / sum((test_data$label - mean(test_data$label))^2)
+
+# Print evaluation metrics
+cat("Mean Squared Error (MSE) - Nonlinear Regression:", mse_nonlinear, "\n")
+cat("Root Mean Squared Error (RMSE) - Nonlinear Regression:", rmse_nonlinear, "\n")
+cat("R-squared value - Nonlinear Regression:", r_squared_nonlinear, "\n")
+
+```
+
+```{r}
+dwplot(model_nonlinear)+  
+   xlab("Coefficient Estimate") + ylab("") +
+    geom_vline(xintercept = 0,
+               colour = "grey60",
+               linetype = 2) +
+  ggtitle("Predicting Depression Tweets with a non-linear model") 
+
+```
+
+
+```{r}
+
+library(gam)
+library(mgcv)
+
+# Fit a non-linear regression model using GAM
+model_gam <- gam(label ~ s(followers_standardized) + s(friends_standardized), data = train_data)
+
+# Preprocess data by removing missing values
+complete_data <- train_data[complete.cases(train_data), ]
+
+
+# Visualize the estimated effects of the variables
+par(mfrow = c(1, 2))  # Adjust the layout of the plots if desired
+
+# Plot the estimated effect of 'followers'
+plot(model_gam, select = 1, se=TRUE, residuals = TRUE,
+     xlab = "Followers", ylab = "Effect of Followers on Label")
+
+# Plot the estimated effect of 'friends'
+plot(model_gam, select = 2, se=TRUE, residuals = TRUE,
+     xlab = "Friends", ylab = "Effect of Friends on Label")
+
+
+
+```
+```{r}
+library('gratia')
+# plot all smooths
+draw(model_gam)
+```
+
+Adding partial residuals to the plot of the estimated effects in a GAM model provides a way to assess the goodness of fit and the presence of systematic patterns in the model.
+
+Partial residuals are calculated by subtracting the estimated component of the model (excluding the effect of a specific variable of interest) from the observed response variable. These residuals represent the part of the response variable that is not accounted for by the model for a specific variable.
+
+When partial residuals are added to the plot of the estimated effects, they are typically shown as individual points or a smooth line against the corresponding variable. This allows you to visually inspect the relationship between the variable and the unexplained variation in the response variable, which can help identify any remaining patterns or trends not captured by the model.
+
+By examining the distribution and pattern of the partial residuals, you can assess whether the model captures the underlying structure and if there are any systematic deviations from the model's predictions. Systematic patterns in the partial residuals may indicate that the model is misspecified or that there are additional variables or nonlinear relationships that should be considered.
+
+
+```{r}
+draw(model_gam, residuals = TRUE)
+```
+
+
+
+

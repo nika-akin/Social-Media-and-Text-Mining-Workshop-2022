@@ -1,0 +1,13 @@
+"0","```r
+hour_summary <- tweets %>%
+  group_by(hour) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweetcount + 1))) - 1)
+
+hour_summary %>%
+  ggplot(aes(hour, tweets)) +
+  geom_line(color = \"lightblue\", size = 2) +
+  expand_limits(y = 0) +
+  labs(x = \"Time\",
+       y = \"Number of #Ukraine tweets per hour\")
+```"

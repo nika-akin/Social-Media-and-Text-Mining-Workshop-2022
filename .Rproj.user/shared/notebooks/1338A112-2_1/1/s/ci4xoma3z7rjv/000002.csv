@@ -1,0 +1,23 @@
+"0","```r
+#Hashtag Exploration
+tweet_words <- tweets %>%
+  mutate(hashtags = stringr::str_count(text, \"#[a-zA-Z]\"), sort = TRUE) %>%
+  select(username, text, retweetcount, favorite_count, tweetcreatedts , tweetid,
+         hour, hashtags) %>%
+  unnest_tokens(word, text, token = \"tweets\") %>%
+  anti_join(stop_words, by = \"word\") %>%
+  filter(!word %in% c(\"de\", \"|\"),
+         stringr::str_detect(word, \"[a-z]\"))
+```"
+"1","Using `to_lower = TRUE` with `token = 'tweets'` may not preserve URLs.
+"
+"0","```r
+tweets %>%
+  mutate(hashtags = stringr::str_count(text, \"#[a-zA-Z]\"), sort = TRUE) %>%
+  filter(hashtags < 6) %>%
+  group_by(username) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweetcount + 1))) - 1) %>%
+  filter(tweets >= 30) %>%
+  arrange(desc(avg_retweets))
+```"

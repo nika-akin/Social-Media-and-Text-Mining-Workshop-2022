@@ -1,0 +1,23 @@
+"0","#|eval=FALSE"
+"0",""
+"0","setwd(""C:/Users/batzdova/Desktop"")"
+"2","Warning:"
+"2"," The working directory was changed to C:/Users/batzdova/Desktop inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.
+"
+"0","library(here)"
+"0","here::i_am(""kaggle.json"")"
+"2","here() starts at C:/Users/batzdova/Desktop
+"
+"0","kgl_auth(creds_file = 'kaggle.json')"
+"1","<request>
+"
+"1","Options"
+"1",""
+"1",":
+"
+"1","* httpauth: 1"
+"1","
+"
+"1","* userpwd: veronika90:0a4c21dfafe0ddb9d18cf15e4acfcc5d"
+"1","
+"

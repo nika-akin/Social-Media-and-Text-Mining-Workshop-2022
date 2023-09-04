@@ -1,0 +1,10 @@
+"0","```r
+# Nutzer-zentriert--Timeline Crawling
+get_user_timeline(
+userid, #single string oder Vektor mit User_Ids
+start_tweets,
+end_tweets,
+bearer_token = get_bearer(),
+n = 100,
+)
+```"

@@ -1,0 +1,33 @@
+project:
+  type: book
+
+book:
+  title: "Text mining with Twitter data"
+  author: "Veronika Batzdorfer"
+  date: "29.6.2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    number-depth: 3
+    theme: cosmo
+    highlight-style: atom-one
+    code-block-bg: "#f0f0f0"
+    code-block-border-left: "#045a8d"
+    code-fold: false
+    code-summary: "Code"
+    code-tools: true
+    code-link: true
+    code-copy: true
+    knitr:
+      opts_chunk:
+        out.width: 100%
+        R.options:
+          width: 68
+

@@ -1,0 +1,17 @@
+# Preface {.unnumbered}
+
+This workshop will include an introduction to how large amounts of text data from Twitter, which are openly available, can be made accessible and usable for research purposes. It will combine conceptual considerations and practical applications in R.
+
+- Strategies to collect and process textual data with application programming interfaces (APIs) using common `R` tools.
+
+- Potentials of bias in the research data cycle
+
+- Basics of natural language processing (NLP), data cleaning (e.g. with `quanteda` or `textclean`) and application of common NLP tools for automated text analysis
+
+- Outlook on topic modelling (or word embeddings)
+
+- Bias and ethics in NLP
+
+
+
+```

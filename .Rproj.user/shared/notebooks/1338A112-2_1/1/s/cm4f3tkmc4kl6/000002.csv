@@ -1,0 +1,13 @@
+"0","```r
+# Bereinigen von @-Symbol
+tweets$text <- gsub(\"@\\w+\", \"\", tweets$text)
+
+# Bereinigen der Interpuntion
+tweets$text<- gsub(\"[[:punct:]]\", \"\", tweets$text)
+
+# Bereinigen von Nummern
+tweets$text <- gsub(\"[[:digit:]]\", \"\", tweets$text)
+
+# Bereinigen von Bildern
+tweets$text<- gsub(\"pictwitter\\w+ *\", \"\", tweets$text)
+```"

@@ -1,0 +1,10 @@
+"0","```r
+# Tweet-zentriert-Archiv
+get_all_tweets(
+  query = 'xyz',
+  start_tweets,
+  end_tweets,
+  bearer_token = get_bearer(),
+  n = 1000
+)
+```"

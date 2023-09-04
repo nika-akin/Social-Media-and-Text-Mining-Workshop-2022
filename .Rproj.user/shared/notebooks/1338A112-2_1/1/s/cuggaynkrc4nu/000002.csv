@@ -1,0 +1,19 @@
+"0","```r
+#Tf-idf: die Kennzahl tf-idf gibt an, wie wichtig ein Wort fÃ¼r ein Dokument in einer Sammlung (oder einem Korpus) von Dokumenten ist
+#HÃ¤ufigkeit eines Begriffs, bereinigt darum, wie selten er verwendet wird
+top_word <- tweet_words %>%
+  count(word, hour) %>%
+  bind_tf_idf(word, hour, n) %>%
+  arrange(desc(tf_idf)) %>%
+  distinct(hour, .keep_all = TRUE) %>%
+  arrange(hour)
+
+tf_idf <-word_summary %>%
+  inner_join(top_word, by = c(\"word\")) %>%
+  arrange(desc(avg_retweets)) 
+
+#Tf-idf der WÃ¶rter pro Stunde
+tf_idf %>% 
+  ggplot2::ggplot(aes(tf_idf, forcats::fct_reorder(word, tf_idf), fill = hour)) +
+  geom_col(show.legend = FALSE)
+```"

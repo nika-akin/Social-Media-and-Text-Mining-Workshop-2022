@@ -1,0 +1,9 @@
+"0","```r
+#Verteilung Favorites
+tweets %>%
+  ggplot2::ggplot(aes(favorite_count + 1)) +
+  geom_histogram() +
+  scale_x_log10()
+```"
+"1","`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+"

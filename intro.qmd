@@ -1,0 +1,135 @@
+# Introduction
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, error = F)
+
+options(digits =2, knitr.kable.NA = '')
+```
+
+#### 1. Basic workflow for working with text data
+
+##### A) **Sampling Text Data**
+
+-   Existing Archives (e.g., [Reddit Pushift Data](https://files.pushshift.io/reddit/comments/), see also [Baumgartner et al., 2020](https://cs.paperswithcode.com/paper/the-pushshift-reddit-dataset))
+-   APIs (e.g., [The Guardian](https://cran.r-project.org/web/packages/guardianapi/guardianapi.pdf))
+-   Web Scraping (e.g., with [rvest](https://rvest.tidyverse.org/)) (or just for fun, build you own API with [plumber](https://www.rplumber.io/))
+
+##### B) **Pre-processing/ Data Wrangling**
+
+-   Cleaning
+-   Selecting and Weightning of *Features* (Reducing dimensionality)
+
+##### C) **Analyses**
+
+-   *Dictionary*- or rulebased Approaches
+-   Supervised Approaches (e.g., SVM)
+-   Unsupervised Approaches (e.g., Topic Modeling)
+
+##### D) **Validation**
+
+-   e.g., Reliability of Bot Classifications ([tweetbotornot2](https://github.com/mkearney/tweetbotornot2#botometer))
+
+#### 2. Data Sampling
+
+##### A) **Screen Scraping**:
+
+-   *Scraping*, *Parsing* and *Formatting* (e.g., with *Rselenium*)
+
+##### B) **API Access Points**:
+
+-   Send **Get**-Requests directly to the data base
+-   Gateways for specific data types, irrespective of the programming language
+
+##### B.1. Application Programming Interfaces (APIs)
+
+-   "communicates" directly with the data base
+-   determines *which* information are accessible for *whom*, *how* and to which *degree*
+
+##### B.2. API-Applications
+
+-   Embedded content into other applications
+-   Build bots (e.g., [Telegram](https://core.telegram.org/bots/api))
+-   Collect data for market research
+
+Access point exist for:
+
+-   [**Youtube**](https://developers.google.com/youtube/v3) -- allows via keywords to search for contents, the Video, lists and user activities such as upvoting, comments, favorites
+
+-   [**Instagram**](https://github.com/digitalmethodsinitiative/dmi-instascraper/) -- allows to search for comment structures relating to postings, friends information of users or geolocation
+
+-   [**Wikipedia**](https://cran.r-project.org/web/packages/WikipediR/WikipediR.pdf) -- allows to search for MediaWiki revisions, revision summaries connected to an entry, timestamps, site information, user information
+
+-   [**Google Maps**](https://cran.rstudio.com/web/packages/mapsapi/vignettes/intro.html) -- allows to search for coordinates of latitude and longitude, distance matrices
+
+##### B.3. Advantages of API harvesting
+
+-   No interaction with HTML data types necessary (Output: `JSON`-files)
+-   Usually legal (upon following the Terms of Service)
+
+##### B.4. Disadvantages of API harvesting
+
+-   Not every website has an API
+-   Only the data that the API makes available can be retrieved
+-   *Rate limitations* (e.g. number of tweets per day/ query).
+-   Terms of use and changes to the API restrict use (e.g. code reproducibility, sharing of data sets)
+-   Code varies depending on platform and level of documentation detail
+
+#### 3. Tool overview for Twitter data access
+
+Twitter for research on the dynamics of fast-moving socio-political events and contemporary culture.
+
+Differentiation by requirements:
+
+-   Graphical User Interface
+-   Type of data
+-   Suitability for collection or for processing and analysis
+-   API version (e.g. `Twitter API v1.1` offer the packages `rtweet`)
+
+**Sources for Tools**:
+
+-   [Twitter Tool List: Wiki of the Social Media Observatory am Leibniz-Institut für Medienforschung \| Hans-Bredow-Institut (HBI)](https://smo-wiki.leibniz-hbi.de/Twitter-Tools)
+
+-   Tutorial for Twitter-Daten: Jürgens, P., & Jungherr, A. (2016). A tutorial for using Twitter data in the social sciences: Data collection, preparation, and analysis. Preparation, and Analysis (January 5, 2016).)
+
+-   [Tools for Collecting and Analysing Social Media Data](https://wiki.digitalmethods.net/Dmi/ToolDatabase)
+
+#### 4. Academic Twitter Access Point (v2 API endpoints)
+- To run the following code examples, [Academic Research Access](https://developer.twitter.com/en/products/twitter-api/academic-research) for the Twitter API v2 is required. To sample Twitter data, one uses the `R` package [`academictwitteR`](https://cran.r-project.org/web/packages/academictwitteR/academictwitteR.pdf).
+
+- In the framework, one needs the so-called [Bearer Token](https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens). This [vignette](https://cran.r-project.org/web/packages/academictwitteR/vignettes/academictwitteR-auth.html) in the `academictwitteR` package explains the process of gaining access to the Twitter API.
+
+
+#### 4.1. Twitter Modi with v2 API Endpoints
+
+```{r Twitter academic code for tweets, warning=FALSE, eval=FALSE}
+# Tweet-centric sampling (samples 1000 tweets)
+
+get_all_tweets(
+  query = 'xyz',
+  start_tweets,
+  end_tweets,
+  bearer_token = get_bearer(),
+  n = 1000
+)
+```
+
+```{r Twitter academic code for User_Id, warning=FALSE, eval=FALSE}
+# User-centric sampling: defining users
+
+users <- c("juliasilge", "drob")
+
+get_user_id(users, bearer_token)
+```
+
+```{r Twitter academic code for User Timeline, eval=FALSE}
+# User-centric sampling (samples 100 tweets)
+
+get_user_timeline(
+userid, #single string or Vector with User_Ids
+start_tweets,
+end_tweets,
+bearer_token = get_bearer(),
+n = 100,
+)
+```
+

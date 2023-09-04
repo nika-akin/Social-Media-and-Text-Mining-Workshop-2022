@@ -1,0 +1,11 @@
+"0","```r
+
+
+#Anteil Favorites und Retweets pro User
+tweets %>%
+  select(username, text, retweetcount, favorite_count) %>%
+  mutate(ratio = (favorite_count + 1) / (retweetcount + 1)) %>%
+  arrange(desc(ratio)) %>% 
+  view()
+
+```"

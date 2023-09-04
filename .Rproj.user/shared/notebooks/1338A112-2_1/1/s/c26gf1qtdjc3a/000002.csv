@@ -1,0 +1,11 @@
+"0","```r
+#Lexikalische DiversitÃ¤t
+lexdiv_tweets <- textstat_lexdiv(tweets_en_dfm)
+
+plot(lexdiv_tweets$TTR, type = \"l\", xaxt = \"n\", xlab = NULL, ylab = \"TTR\")
+grid()
+```"
+"0","```r
+axis(1, at = seq_len(nrow(lexdiv_tweets)), labels = tweets_en_dfm$username)
+
+```"

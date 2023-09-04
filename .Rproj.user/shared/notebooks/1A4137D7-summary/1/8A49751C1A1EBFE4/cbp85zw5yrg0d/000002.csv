@@ -1,0 +1,2 @@
+"0","# Remove the timezone offset from the date string"
+"0","mental$date <- gsub("" \\+\\d{4}"", """", mental$post_created)"

@@ -1,0 +1,6 @@
+"0","```r
+tweets <- tweets %>%
+  mutate(hour = floor_date(tweetcreatedts, 
+                           unit= \"hour\")) #Runden von date-time Objekten (Sekunde, Woche, Monat)
+
+```"

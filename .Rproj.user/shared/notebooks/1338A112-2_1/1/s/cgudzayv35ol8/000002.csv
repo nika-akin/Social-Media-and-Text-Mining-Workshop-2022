@@ -1,0 +1,15 @@
+"0","```r
+feat <- names(topfeatures(tweets_en_fcm, 50))
+
+fcmat_tweets_select <- fcm_select(tweets_en_fcm, pattern = feat, selection = \"keep\")
+dim(tweets_en_fcm)
+```"
+"1","[1] 57748 57748
+"
+"0","```r
+size <- log(colSums(dfm_select(tweets_en_fcm, feat, selection = \"keep\")))
+
+set.seed(144)
+textplot_network(fcmat_tweets_select, min_freq = 0.7, vertex_size = size / max(size) * 3)
+
+```"

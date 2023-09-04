@@ -1,0 +1,4 @@
+"0","setwd(""C:/Users/batzdova/Desktop"")"
+"2","Warning:"
+"2"," The working directory was changed to C:/Users/batzdova/Desktop inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.
+"

@@ -1,0 +1,467 @@
+# Use case Twitter text mining
+
+### Required `R`packages {.unnumbered}
+
+```{r, message = FALSE, warning = FALSE, results = 'hide'}
+pkgs <- c("kaggler", "tidyverse", "httr", "readr", "here") 
+
+lapply(pkgs, require, character.only = TRUE)
+#else install kaggler:
+#install.packages(c("devtools"))
+#devtools::install_github("ldurazo/kaggler")
+
+filter <- dplyr::filter # to resolve namespace conflicts between tidyverse and dplyr
+
+library(academictwitteR)    # collecting Twitter data
+library(dplyr)              # Data Wrangling, pre-processing
+library(quanteda)           # text-based descriptive
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(tidytext)           # Text Mining 'tidy format'
+library(textclean)          # Pre-Processing + harmonizing
+library(lubridate)          # Wrangling with time series data
+library(ggplot2)
+library(anytime)            # parsing dates
+
+theme_set(theme_light())
+```
+
+#### Descriptive Overview
+
+For demonstration purposes we retrieve an archived Twitter (sub-)sample, containing English **depression** specific tweets. (The sample contains *N*= 20,000 tweets.) We retrieve a sub-sample from the platform *Kaggle*.
+
+**a.)** This can be directly downloaded: [**Kaggle Data Dump, Depression"**](https://www.kaggle.com/datasets/infamouscoder/mental-health-social-media?select=Mental-Health-Twitter.csv)
+
+**b.)** Or by issuing a `GET` request via its `API` (see below).
+
+For obtaining the data via the `Kaggle API` we *install* and *load* all dependencies to use `kaggler`.
+
+*Note*. For both (a & b authentication is required)
+
+A `kaggle.json` file needs to be made for **authentication** on Kaggle. The `kaggle.json` file should be positioned within the working directory. The json contains: *username* and the `API token`.
+
+To create your `API token` go to your Kaggle Profil: (Your profile \> Account \> Settings \> API \> Create new token)
+
+```{r eval=FALSE, error=FALSE}
+setwd("C:/Users/batzdova/Desktop")
+library(here)
+here::i_am("kaggle.json")
+kgl_auth(creds_file = 'kaggle.json')
+```
+
+```{r eval=FALSE}
+response <- kgl_datasets_download_all(owner_dataset = "infamouscoder/mental-health-social-media?select=Mental-Health-Twitter")
+```
+
+```{r eval=FALSE}
+library(httr)
+dataset <- httr::GET("https://www.kaggle.com/datasets/infamouscoder/mental-health-social-media?select=Mental-Health-Twitter.csv")
+
+temp <- tempfile()
+download.file(dataset$url,temp)
+data <- read.csv(unz(temp, "Mental-Health-Twitter.csv"))
+unlink(temp)
+```
+
+```{r eval=FALSE}
+mental <- data
+```
+
+Or alternatively, read in csv-data which have been downloaded.
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+#|warning=FALSE
+#|echo=FALSE
+setwd("C:/Users/batzdova/Desktop")
+here::i_am("Mental-Health-Twitter.csv")
+mental <- read_csv("Mental-Health-Twitter.csv")
+```
+
+### Overview of observations
+
+Our data set comprises $20,000$ observations with $10,000$ depression labeled tweets. Yet, only $19,881$ are unique tweets (i.e. `post_id`)
+
+Each observed person `user_id` ($N=72$ ) can be characterized by a set of variables (i.e., *features*) such as date of post creating `post_created` or count of `followers`.
+
+```{r}
+glimpse(mental)
+
+mental %>% 
+  filter(label ==1) %>% 
+  count()
+
+n_distinct(mental$post_id) # count of unique tweets
+n_distinct(mental$user_id) # count of unique users
+
+```
+
+**Parse Date Variable** `post_created`
+
+```{r}
+# Remove the timezone offset from the date string
+mental$date <- gsub(" \\+\\d{4}", "", mental$post_created)
+```
+
+```{r}
+# Convert the date string to a date variable
+mental$date_any <- anytime(mental$date)
+
+# Format the date variable as "YYYY-MM-DD H:M"
+#mental$formatted_date <- format(mental$date_any , "%Y-%m-%d %H:%M")
+mental$formatted_date <- format(mental$date_any , "%Y-%m-%d")
+mental$day_hour <- format(mental$date_any, "%Y-%m-%d %H")
+```
+
+`Formatted_date` is a `character` class. When we would use `as.Date()` we would lose the `timestamp` information. When we have a character with both date and time we have to use `POSIXct` class (as seen with the `date_any` variable).
+
+```{r}
+mental$date <- as.Date(mental$formatted_date)
+mental$date_hour <- as.POSIXlt(mental$day_hour)
+#mental$formatted_date_time <- as.POSIXlt(mental$formatted_date)
+```
+
+**Distribution Friends**
+
+```{r }
+mental$logfriends <-log(mental$friends+1)
+
+hist(mental$logfriends,  breaks = 50, prob= TRUE)
+lines(density(mental$logfriends), col = "red")  
+```
+
+**Distribution Followers**
+
+```{r Log transformed followers}
+mental$logfollow=log(mental$followers+1)
+hist(mental$logfollow, breaks = 50, prob = TRUE)
+lines(density(mental$logfollow), col = "red")   
+```
+
+```{r}
+ggplot(mental, aes(x = logfriends, y = logfollow)) + 
+  geom_point(alpha=.5)
+```
+
+**Tweets und Retweets per day**
+
+```{r}
+library(scales)
+twt_retwt_summary <- mental %>%
+  group_by(user_id, date, label) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1)
+
+startTime <- as.Date("2014-01-01")
+endTime <- as.Date("2017-10-31")
+
+# create a start and end time R object
+start.end <- c(startTime,endTime)
+start.end
+
+pl1<-twt_retwt_summary %>%
+  ggplot(aes(date, tweets, group = user_id, fill= user_id)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+
+twt_retwt_summary %>%
+  ggplot(aes(date, tweets, group = user_id, fill= label, col= label)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+twt_retwt_summary %>%
+  ggplot(aes(date, avg_retweets, group = user_id, fill= label, col= label)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Number of depression tweets per day") +
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+pl2 <-twt_retwt_summary %>%
+  ggplot(aes(date, avg_retweets, group=user_id)) +
+  geom_line( size = 0.4) +
+  expand_limits(y = 0) +
+  labs(x = "Time",
+       y = "Average (geometric mean) retweets each day")+
+  (scale_x_date(limits=start.end,
+                             breaks=date_breaks("3 month"),
+                             labels=date_format("%b %y")))
+
+gridExtra::grid.arrange(pl1,pl2, ncol=2)
+```
+
+```{r}
+ts.plot(twt_retwt_summary$tweets)
+ts.plot(twt_retwt_summary$avg_retweets)
+```
+
+**User Activity**
+
+```{r}
+mental %>%
+  count(user_id, sort = TRUE) %>%
+  head(12) %>%
+  mutate(username = reorder(user_id, n)) %>%
+  ggplot(aes(username, n)) +
+  geom_col() +
+  coord_flip()
+
+#Retweet activity per user
+mental %>%
+  arrange(desc(retweets)) %>%
+  select(user_id, post_text, retweets)
+#Tweets und Retweets per User
+mental %>%
+  group_by(user_id) %>%
+  summarize(tweets = n(),
+            retweetnr = sum(retweets)) %>%
+  arrange(desc(tweets)) %>%
+  arrange(desc(retweetnr))
+
+#Proportion Likes and Retweets per User
+mental %>%
+  select(user_id, post_text, retweets, favourites) %>%
+  mutate(ratio = (favourites + 1) / (retweets + 1)) %>% # to avoid zero
+  arrange(desc(ratio))
+
+```
+
+#### 8. Basics Text Mining in a Nutshell
+
+A.**Document** = collection of strings and their metadata
+
+B.**Corpus** = collection of \*documents\*\*.
+
+C.**Tokens** = smallest unit of meaning (mostly words)
+
+D.**Vocabulary** = collection of unique words of a *Corpus*.
+
+E.**D**ocument-**F**eature-**M**atrix or **D**ocument-**T**erm-**M**atrix =
+
+this is a matrix where the rows indicate the documents, the columns indicate the expressions and the cells indicate the frequency of the expressions in each document, i.e.: Matrix with *n* = number of Document rows and *m* = size of Vocabulary columns, based on **bag-of-words** assumption, which ignores word order and syntax.
+
+##### 8.1. Pre-processing
+
+A. **Tokenisation**
+
+B. **Remove** Stopwords
+
+C. **String** operations (punctuation, normalise URL).
+
+The order of the application steps is crucial and should be guided by the research question.
+
+```{r Pre-processing Punctuation}
+# Clean @-Symbol
+mental$post_text<- gsub("@\\w+", "", mental$post_text)
+
+# Clean Interpunction
+mental$post_text<- gsub("[[:punct:]]", "", mental$post_text)
+
+# Clean Numbers
+mental$post_text <- gsub("[[:digit:]]", "", mental$post_text)
+
+# Clean pictures
+mental$post_text<- gsub("pictwitter\\w+ *", "", mental$post_text)
+```
+
+```{r Pre-processing html}
+#Bereinigen von HTML-Notation
+remove_html <- "&amp;|&lt;|&gt;" #&lt und &gt stehen für < und > und &amp für &
+
+mental_en <- mental %>% 
+  select(post_id, post_text, user_id) %>% 
+  mutate(text = stringr::str_remove_all(post_text, remove_html))
+```
+
+With [`textclean`](https://github.com/trinker/textclean) further harmonisation can be done, e.g. replacing emojis with word equivalents.
+
+```{r, warning=FALSE}
+mental_en$text <- replace_emoji(mental_en$text)
+```
+
+Oder Normalisieren von Wortverlängerungen (Elongation, z.B."Whyyyy")
+
+```{r, warning=FALSE}
+mental_en$text <- replace_word_elongation(mental_en$text)
+```
+
+From the data frame, you can create a *Corpus* object, i.e. a collection of *documents* (tweets) and their *metadata*.
+
+```{r}
+#select unique tweet_ids
+
+unique <- mental_en %>% group_by(post_id) %>% unique()
+```
+
+```{r Corpus Objekt, results='hide'}
+tweets_en_corpus <- corpus(unique,
+                           docid_field = "post_id",
+                           text_field = "post_text")
+
+```
+
+In `quanteda` kann man Text in die kleinsten Bedeutungssegmente (**tokens**) aufteilen durch das Entfernen von Trennzeichen (vgl. dazu in `tidytext` `unnest_tokens(word, text)`. Zudem entfernen wir bestimmte Zeichentypen sowie sogenannte **Stopwords** (d.h., grammatikalische Wörter, die je nach Anwendung wenig semantische Bedeutung tragen). Vgl. (`stopwords()`)
+
+```{r Tokenisation, results=FALSE}
+tweets_en_tokens <- tokens(tweets_en_corpus,
+                           remove_punct = TRUE,
+                           remove_numbers = TRUE,
+                           remove_symbols = TRUE,
+                           remove_url = TRUE) %>% 
+  tokens_tolower() %>% 
+  tokens_remove(stopwords("english"))
+```
+
+```{r KWIC, results='hide'}
+
+kw_depression <- kwic(tweets_en_tokens, pattern =  "depress*", window = 3)
+head(kw_depression)
+```
+
+#### 8.2. Tidy Workflow--Exploration Tweets, Retweets und Hashtags
+
+```{r Tokenisation und Pre-processing}
+#Tokenisation der Tweets (1-gram) und Pre-processing mit tidytext
+
+tweet_words <- mental %>%
+  select(user_id, 
+         post_text, 
+         retweets, 
+         favourites,
+         formatted_date, 
+         post_id) %>%
+  unnest_tokens(word, post_text) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!word %in% c("amp", "de", "twitter", "youre", "en", "die", "rt", "im", "dont", "ive", "yong"),
+         stringr::str_detect(word, "[a-z]"))
+
+
+tweet_words %>%
+  count(word, sort = TRUE) %>%
+  head(16) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot2::ggplot(aes(word, n)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Most common words in Tweets on Depression",
+       y = "Frequency of words")
+
+```
+
+```{r Favorites und Retweets, warning=FALSE}
+#Verteilung Favorites
+mental %>%
+  ggplot2::ggplot(aes(favourites + 1)) +
+  geom_histogram() +
+  scale_x_log10()
+
+#Durchschnittliche Retweets und Durschnittliche Favorites
+word_summary <- tweet_words  %>%
+  group_by(word) %>%
+  summarize(n = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1,
+            avg_favorites = exp(mean(log(favourites + 1))) - 1) %>%
+  filter(n >= 30) %>%
+  arrange(desc(avg_retweets))
+
+```
+
+```{r tf-idf}
+#Tf-idf: die Kennzahl tf-idf gibt an, wie wichtig ein Wort für ein Dokument in einer Sammlung (oder einem Korpus) von Dokumenten ist
+#Häufigkeit eines Begriffs, bereinigt darum, wie selten er verwendet wird
+top_word <- tweet_words %>%
+  count(word, formatted_date) %>%
+  bind_tf_idf(word, formatted_date, n) %>%
+  arrange(desc(tf_idf)) %>%
+  distinct(formatted_date, .keep_all = TRUE) %>%
+  arrange(formatted_date)
+
+tf_idf <-word_summary %>%
+  inner_join(top_word, by = c("word")) %>%
+  arrange(desc(avg_retweets)) 
+
+#Tf-idf der Wörter pro Stunde
+tf_idf %>% 
+  ggplot2::ggplot(aes(tf_idf, forcats::fct_reorder(word, tf_idf), fill = formatted_date)) +
+  geom_col(show.legend = FALSE)
+```
+
+```{r hashtags, warning=FALSE}
+#Hashtag Exploration
+tweet_words <- mental %>%
+  mutate(hashtags = stringr::str_count(post_text, "#[a-zA-Z]"), sort = TRUE) %>%
+  select(user_id, post_text, retweets, favourites, formatted_date , post_id,
+        hashtags) %>%
+  unnest_tokens(word, post_text) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!word %in% c("de", "|"),
+         stringr::str_detect(word, "[a-z]"))
+
+
+mental %>%
+  mutate(hashtags = stringr::str_count(post_text, "#[a-zA-Z]"), sort = TRUE) %>%
+  filter(hashtags < 6) %>%
+  group_by(user_id) %>%
+  summarize(tweets = n(),
+            avg_retweets = exp(mean(log(retweets + 1))) - 1) %>%
+  filter(tweets >= 30) %>%
+  arrange(desc(avg_retweets))
+
+
+tweet_word_summary <- tweet_words %>%
+  filter(hashtags < 6) %>%
+  group_by(word) %>%
+  summarize(n = n(),
+            avg_retweets = exp(mean(log(retweets+ 1))) - 1,
+            avg_favorites = exp(mean(log(favourites + 1))) - 1)
+
+
+
+tweet_word_summary <-tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+   filter(!word %in% c("amp", "de", "twitter", "youre", "en", "die", "rt", "im", "dont", "ive", "yong"),
+         stringr::str_detect(word, "[a-z]")) %>% 
+  arrange(desc(avg_retweets)) %>% 
+  head()
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+  ggplot2::ggplot(aes(n, avg_retweets)) +
+  geom_point() +
+  geom_text(aes(label = word), check_overlap = TRUE) +
+  scale_x_log10() +
+  scale_y_log10()
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, "https")) %>%
+  arrange(desc(avg_retweets)) %>%
+  head(20) %>%
+  mutate(word = reorder(word, avg_retweets)) %>%
+  ggplot2::ggplot(aes(word, avg_retweets)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Which words get the most retweets in depression?",
+       subtitle = "Only words appearing in at least 100 tweets",
+       y = "Geometric mean of the Number of retweets")
+```
+
+#### 9. Daten speichern
+
+```{r, eval=FALSE}
+write_csv(tweets, file = "./data/tweets.csv")
+```

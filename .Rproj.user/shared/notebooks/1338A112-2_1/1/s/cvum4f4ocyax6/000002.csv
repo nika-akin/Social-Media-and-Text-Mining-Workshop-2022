@@ -1,0 +1,7 @@
+"0","```r
+# User_ID erhalten--Nutzer-zentriert
+
+users <- c(\"juliasilge\", \"drob\")
+
+get_user_id(users, bearer_token)
+```"

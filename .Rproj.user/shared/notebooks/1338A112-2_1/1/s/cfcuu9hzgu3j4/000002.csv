@@ -1,0 +1,8 @@
+"0","```r
+tweets_en_fcm <- fcm(tweets_en_dfm)
+
+topfeatures(tweets_en_fcm) # HÃ¤ufigsten Co-occurences
+```"
+"1","   russia affiliate     china        us autopilot    europe  military        ðŸ‡·ðŸ‡º   russian      like 
+    19041      8577      8253      7298      6950      6844      6805      6798      6497      5955 
+"

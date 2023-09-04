@@ -1,0 +1,6 @@
+"0","# Convert the date string to a date variable"
+"0","mental$date_any <- anytime(mental$date)"
+"0",""
+"0","# Format the date variable as ""YYYY-MM-DD H:M"""
+"0","#mental$formatted_date <- format(mental$date_any , ""%Y-%m-%d %H:%M"")"
+"0","mental$formatted_date <- format(mental$date_any , ""%Y-%m-%d"")"

@@ -1,0 +1,7 @@
+"0","```r
+#Einlesen API Credentials
+oautCred <- read.delim(file = \"oautCred.txt\", header = TRUE, sep = \",\") %>% unlist()
+
+#Einlesen \"Bearer Token\" in die Environment
+Sys.setenv(TWITTER_BEARER = unname(oautCred[\"bearer\"]))
+```"

@@ -1,0 +1,2 @@
+"0","mental$logfollow=log(mental$followers+1)"
+"0","hist(mental$logfollow, breaks = 50)"

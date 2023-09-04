@@ -1,0 +1,4 @@
+"0","```r
+term_freq_en <- textstat_frequency(tweets_en_dfm)
+head(term_freq_en, n = 10)
+```"

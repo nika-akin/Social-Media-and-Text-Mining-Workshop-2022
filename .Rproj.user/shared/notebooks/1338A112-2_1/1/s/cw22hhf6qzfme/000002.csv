@@ -1,0 +1,14 @@
+"0","```r
+tweets %>%
+  count(username, sort = TRUE) %>%
+  head(12) %>%
+  mutate(username = reorder(username, n)) %>%
+  ggplot(aes(username, n)) +
+  geom_col() +
+  coord_flip()
+
+#Retweet AktivÃ¤t der User
+tweets %>%
+  arrange(desc(retweetcount)) %>%
+  select(username, text, retweetcount)
+```"

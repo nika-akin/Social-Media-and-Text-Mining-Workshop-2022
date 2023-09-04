@@ -1,0 +1,11 @@
+"0","library(academictwitteR)    # Datenerhebung
+library(dplyr)              # Data Wrangling, Aufbearbeitung
+library(quanteda)           # Text Mining
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(tidytext)           # Text Mining im 'tidy format'
+library(textclean)          # Normalisierung und Pre-Processing 
+library(lubridate)          # Wrangling mit Zeitdaten
+library(ggplot2)
+
+theme_set(theme_light())"

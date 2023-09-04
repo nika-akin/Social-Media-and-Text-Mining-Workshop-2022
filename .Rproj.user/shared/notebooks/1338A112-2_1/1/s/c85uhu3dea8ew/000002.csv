@@ -1,0 +1,9 @@
+"0","```r
+#Bereinigen von HTML-Notation
+remove_html <- \"&amp;|&lt;|&gt;\" #&lt und &gt stehen fÃ¼r < und > und &amp fÃ¼r &
+
+tweets_en <- tweets %>% 
+  filter(language == \"en\") %>% 
+  select(tweetid, text, username) %>% 
+  mutate(text = stringr::str_remove_all(text, remove_html))
+```"

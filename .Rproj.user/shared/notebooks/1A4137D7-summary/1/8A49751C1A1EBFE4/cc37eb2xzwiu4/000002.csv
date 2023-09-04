@@ -1,0 +1,9 @@
+"0","response <- kgl_datasets_download_all(owner_dataset = ""infamouscoder/mental-health-social-media?select=Mental-Health-Twitter"")"
+"2","Warning in kgl_api_get(glue::glue(""datasets/download/{ownerSlug}/{datasetSlug}"")) :"
+"2","
+ "
+"2"," Bad Request (HTTP 400).
+"
+"1","Invalid field 'select'"
+"1","
+"

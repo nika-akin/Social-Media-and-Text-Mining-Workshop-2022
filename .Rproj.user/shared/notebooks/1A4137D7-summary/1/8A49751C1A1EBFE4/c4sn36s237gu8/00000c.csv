@@ -1,0 +1,21 @@
+"0","#|warning=FALSE"
+"0","#|echo=FALSE"
+"0","setwd(""C:/Users/batzdova/Desktop"")"
+"0","here::i_am(""Mental-Health-Twitter.csv"")"
+"2","here() starts at C:/Users/batzdova/Desktop
+"
+"0","mental <- read_csv(""Mental-Health-Twitter.csv"")"
+"1","[38;5;250mNew names:
+[36m*[38;5;250m `` -> `...1`[39m
+"
+"1","[1mRows: [22m[34m20000[39m [1mColumns: [22m[34m11[39m
+"
+"1","[36m--[39m [1mColumn specification[22m [36m-------------------------------------------------------------[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (2): post_created, post_text
+[32mdbl[39m (9): ...1, post_id, user_id, followers, friends, favourites, statuses, retwee...
+"
+"1","
+[36mi[39m Use `spec()` to retrieve the full column specification for this data.
+[36mi[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"

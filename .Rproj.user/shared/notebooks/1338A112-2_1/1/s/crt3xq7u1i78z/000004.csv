@@ -1,0 +1,9 @@
+"0","```r
+
+hour_summary %>%
+  ggplot(aes(hour, avg_retweets)) +
+  geom_line(color = \"lightblue\", size = 2) +
+  expand_limits(y = 0) +
+  labs(x = \"Time\",
+       y = \"Average (geometric mean) retweets each hour\")
+```"

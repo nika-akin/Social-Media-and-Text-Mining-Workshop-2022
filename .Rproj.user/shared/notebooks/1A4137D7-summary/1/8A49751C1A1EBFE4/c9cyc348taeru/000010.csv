@@ -1,0 +1,3 @@
+"0","mental$logfriends <-log(mental$friends+1)"
+"0",""
+"0","hist(mental$logfriends,  xlim = c(0, 10), breaks = 50, prob= TRUE)"

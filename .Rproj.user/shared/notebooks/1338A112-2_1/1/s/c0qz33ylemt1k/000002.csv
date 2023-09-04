@@ -1,0 +1,19 @@
+"0","```r
+#Tweets Abfrage (basierend auf academic researcher developer account)
+#Tweet Suchabfrage (beinhaltet \"#hashtags, ggf. \"keywords\", Sprache)
+
+get_all_tweets(
+  query = '(#Ukraine) -is:retweet',                   #Tweet Suchabfrage
+               n = Inf,                               #max tweet nr 
+               start_tweets = \"2022-08-19T00:00:00Z\", #Start-Datum
+               end_tweets = \"2022-08-19T23:59:59Z\",   #End-Datum
+               file = \"ukraine_tweets\",               #Dateiname 
+               data_path = \"ukraine_data/\",           #Pfad zur Datei
+               bind_tweets = TRUE,                    #Format als Tabelle
+               )
+
+
+#Entfernen der API Credentials
+rm(oautCred)
+
+```"

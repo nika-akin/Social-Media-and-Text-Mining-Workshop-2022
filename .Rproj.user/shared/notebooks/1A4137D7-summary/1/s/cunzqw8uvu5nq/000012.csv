@@ -1,0 +1,8 @@
+"0",""
+"0","library(here)"
+"0","here::i_am(""kaggle.json"")"
+"2","here() starts at C:/Users/batzdova/Desktop
+"
+"0","kgl_auth(creds_file = 'kaggle.json')"
+"2","Error: Kaggle credentials .json file not found. Provide path to file OR enter your Kaggle 'username' and 'key' (from kaggle.com/{username}/account.
+"

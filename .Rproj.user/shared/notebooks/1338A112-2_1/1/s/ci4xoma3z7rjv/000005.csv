@@ -1,0 +1,14 @@
+"0","```r
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, \"https\")) %>%
+  arrange(desc(avg_retweets)) %>%
+  head(20) %>%
+  mutate(word = reorder(word, avg_retweets)) %>%
+  ggplot2::ggplot(aes(word, avg_retweets)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = \"Which words get the most retweets in #Ukraine?\",
+       subtitle = \"Only words appearing in at least 100 tweets\",
+       y = \"Geometric mean of the Number of retweets\")
+```"

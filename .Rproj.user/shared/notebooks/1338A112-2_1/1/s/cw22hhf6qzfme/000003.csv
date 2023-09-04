@@ -1,0 +1,11 @@
+"0","```r
+
+
+#Tweets und Retweets pro User
+tweets %>%
+  group_by(username) %>%
+  summarize(tweets = n(),
+            retweets = sum(retweetcount)) %>%
+  arrange(desc(tweets)) %>%
+  arrange(desc(retweets))
+```"

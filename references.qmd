@@ -1,0 +1,26 @@
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+Barrie, Christopher & Ho, Justin Chun-ting. (2021). academictwitteR: an R package to access the Twitter Academic Research Product Track v2 API endpoint. *Journal of Open Source Software*, *6*(62), 3272, https://doi.org/10.21105/joss.03272
+
+[Breuer, J. (2022). Demo Twitter-Daten mit R](https://github.com/jobreu/demo-twitter-r)
+
+[Breuer, J. (2022). Twitter linking workshop](https://github.com/jobreu/twitter-linking-workshop-2022)
+
+[Breuer, J., Kohne, J., &  Mohseni, M.R. (2021). Workshop "Automatic Sampling and Analysis of YouTube Comments", GESIS 2021](https://github.com/jobreu/youtube-workshop-gesis-2021)
+
+[Hvitfeldt, E. & Silge, J. (2022). Supervised Machine Learning for Text Analysis in R von ](https://smltar.com/)
+
+Jürgens, P., & Jungherr, A. (2016). A tutorial for using Twitter data in the social sciences: Data collection, preparation, and analysis. Preparation, and Analysis (January 5, 2016).)
+
+
+[Silge, J. & Robinson, D. (2022). Text Mining with R - A Tidy Approach von ](https://www.tidytextmining.com/)
+
+[Niekler, A. & Wiedemann, G. (2020). Text mining in R for the social sciences and digital humanities von A](https://tm4ss.github.io/docs/)
+
+[Twitter datasets](https://github.com/shaypal5/awesome-twitter-data)
+[MetaCorpus of social media corpora](https://github.com/socialmediaie/MetaCorpus)
+
+[Twitter datasets](https://vlo.clarin.eu/search;jsessionid=1AAE84B9F01F93D93D755DAEF7BCE0FF?0&q=twitter)

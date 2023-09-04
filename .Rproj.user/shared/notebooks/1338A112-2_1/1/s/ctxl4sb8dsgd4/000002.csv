@@ -1,0 +1,5 @@
+"0","```r
+#Mit keyword-in-context kann man eine Konkordanz-Ansicht erhalten.
+kw_ukraine <- kwic(tweets_en_tokens, pattern =  \"ukrain*\", window = 3)
+tibble::view(kw_ukraine)
+```"

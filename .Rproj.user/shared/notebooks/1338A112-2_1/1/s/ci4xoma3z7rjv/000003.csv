@@ -1,0 +1,31 @@
+"0","```r
+
+
+tweet_word_summary <- tweet_words %>%
+  filter(hashtags < 6) %>%
+  group_by(word) %>%
+  summarize(n = n(),
+            avg_retweets = exp(mean(log(retweetcount + 1))) - 1,
+            avg_favorites = exp(mean(log(favorite_count + 1))) - 1)
+
+
+
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, \"https\")) %>%
+  arrange(desc(avg_retweets)) %>%
+  View()
+
+tweet_word_summary %>%
+  filter(n >= 100,
+         !stringr::str_detect(word, \"https\")) %>%
+  ggplot2::ggplot(aes(n, avg_retweets)) +
+  geom_point() +
+  geom_text(aes(label = word), check_overlap = TRUE) +
+  scale_x_log10() +
+  scale_y_log10()
+```"
+"1","Warning: Transformation introduced infinite values in continuous y-axis
+Warning: Transformation introduced infinite values in continuous y-axis
+"
